@@ -1,0 +1,22 @@
+@import "global-vars";
+@import "fonts";
+
+$example: 20px;
+
+:root {
+    --main-color: rgb(182, 227, 245);
+    font-family: "Roboto";
+}
+
+body {
+    margin: $example;
+    background: var(--main-color);
+}
+
+@for $i from 1 through 12 {
+    .example#{$i} {
+        width: 128px;
+        height: 128px;
+        background-image: url($images-path + $i + ".png");
+    }
+}

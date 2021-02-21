@@ -1,0 +1,13 @@
+@import "global-vars";
+
+@mixin font-face($family, $weight, $url, $type) {
+    @font-face {
+        font-family: $family;
+        font-weight: $weight;
+        src: url($url) format($type);
+    }
+}
+
+@include font-face("Roboto", 700, $fonts-path + "Roboto-Bold.ttf", "truetype");
+@include font-face("Roboto", 500, $fonts-path + "Roboto-Medium.ttf", "truetype");
+@include font-face("Roboto", 400, $fonts-path + "Roboto-Regular.ttf", "truetype");
