@@ -11,6 +11,7 @@ $example: 20px;
 body {
     margin: $example;
     background: var(--main-color);
+    display: grid;
 }
 
 @for $i from 1 through 12 {

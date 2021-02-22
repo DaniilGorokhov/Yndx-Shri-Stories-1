@@ -1,6 +1,7 @@
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const EslintWebpackPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
     entry: "./src/index.js",
@@ -14,14 +15,18 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    // TODO fix MiniCssExtractPlugin.loader options - setup publicPath
+                    MiniCssExtractPlugin.loader,
+                    "css-loader",
                     {
-                        loader: MiniCssExtractPlugin.loader,
+                        loader: "postcss-loader",
                         options: {
-                            // publicPath: "/",
+                            postcssOptions: {
+                                plugins: [
+                                    "autoprefixer"
+                                ],
+                            },
                         },
                     },
-                    "css-loader",
                     "sass-loader",
                 ],
             },
@@ -40,6 +45,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "stories.css",
         }),
+        new EslintWebpackPlugin(),
     ],
     mode: process.env.NODE_ENV === "production" ? "production" : "development",
 };
