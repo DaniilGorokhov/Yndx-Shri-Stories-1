@@ -1,0 +1,16 @@
+.slide-description {
+    padding: 1.25rem 1.5rem 0;
+}
+
+.slide-description__headline {
+    font: var(--headline);
+    color: var(--headline-color);
+    margin: 0;
+}
+
+.slide-description__caption {
+    padding-top: 0.5em;
+    font: var(--body-font);
+    color: var(--body-font-secondary-color);
+    margin: 0;
+}

@@ -1,0 +1,8 @@
+.slide {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.slide_vertical-align_between {
+    justify-content: space-between;
+}

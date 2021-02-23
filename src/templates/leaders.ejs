@@ -1,0 +1,63 @@
+<main class="slide slide_vertical-align_between">
+    <div class="slide-description">
+        <p class="slide-description__headline"><%= data.title %></p>
+        <p class="slide-description__caption"><%= data.subtitle %></p>
+    </div>
+
+    <div class="leader-board">
+        <% let barOrder = [[3, 5], [4, 4], [2, 3], [5, 2], [1, 1]]; %>
+        <% for (let i = 0; i < 5; i++) { %>
+            <%
+                let itemClasses = [];
+                itemClasses.push(`leader-board__item_order_${barOrder[i][0]}`);
+                if (i > 2) itemClasses.push('leader-board__item_additional');
+                if (i === 0) {
+                    itemClasses.push(`leader-board__item_z-index_2`);
+                } else if (i < 3) {
+                    itemClasses.push(`leader-board__item_z-index_1`);
+                }
+
+                let barClasses = [];
+                barClasses.push(`leader-board__bar_height_${barOrder[i][1]}`);
+                if (i === 0) barClasses.push('leader-board__bar_primary');
+
+                let peopleCardWrapper;
+                if (i === 0) {
+                    peopleCardWrapper = "leader-board__wrapper_to-vis-align_center";
+                } else if (i % 2 === 0) {
+                    peopleCardWrapper = "leader-board__wrapper_to-vis-align_start";
+                } else {
+                    peopleCardWrapper = "leader-board__wrapper_to-vis-align_end";
+                }
+            %>
+            <div class="leader-board__item <%= itemClasses.join(' ') %>">
+                <div class="leader-board__wrapper <%= peopleCardWrapper %>">
+                    <div class="people-card">
+                        <div class="people-card__img-wrapper">
+                            <img src="<%= require(`../assets/images/${data.users[i].avatar}`) %>" alt="People card image" class="people-card__img">
+                        </div>
+                        
+                        <p class="people-card__body">
+                            <%= data.users[i].name %>
+                        </p>
+                        <p class="people-card__caption">
+                            <%= data.users[i].valueText %>
+                        </p>
+
+                        <% if (i === 0) { %>
+                            <div class="people-card__emoji">
+                                <%= data.emoji %>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <div class="leader-board__bar <%= barClasses.join(' ') %>">
+                    <div class="leader-board__score leader-board__wrapper <%= peopleCardWrapper %>">
+                        <%= i + 1 %>
+                    </div>
+                </div>
+            </div>
+        <% } %> 
+    </div>
+</main>
