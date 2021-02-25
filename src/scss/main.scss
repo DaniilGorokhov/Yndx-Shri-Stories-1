@@ -2,11 +2,12 @@
 @import "vars";
 
 @import "leaders";
+@import "vote";
 
 :root {
     box-sizing: border-box;
-    // font-size adaptation below
-    font-size: 1em;
+    // adaptation below
+    font-size: 2em;
 }
 
 body {
@@ -20,9 +21,16 @@ body.theme_light {
     background: #FFFFFF;
 }
 
-.slide {
-    min-height: 100vh;
-    min-width: 100%;
+@media screen and (max-width: 1919px) {
+    :root {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    :root {
+        font-size: 1em;
+    }
 }
 
 @media screen and (max-width: 320px) {

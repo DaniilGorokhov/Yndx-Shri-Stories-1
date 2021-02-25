@@ -5,7 +5,21 @@
     </div>
 
     <div class="leader-board">
-        <% let barOrder = [[3, 5], [4, 4], [2, 3], [5, 2], [1, 1]]; %>
+        <%
+            let barOrder = [[3, 5], [4, 4], [2, 3], [5, 2], [1, 1]];
+
+            let inFirstThree = true;
+            let inFirstFive = true;
+            let selectedUserPos = data.users.findIndex(user => user.id === data.selectedUserId);
+            if (selectedUserPos > 2) {
+                inFirstThree = false;
+            }
+            if (selectedUserPos > 4) {
+                inFirstFive = false;
+            }
+
+            const selectedUser = data.users[selectedUserPos];
+        %>
         <% for (let i = 0; i < 5; i++) { %>
             <%
                 let itemClasses = [];
@@ -23,30 +37,39 @@
 
                 let peopleCardWrapper;
                 if (i === 0) {
-                    peopleCardWrapper = "leader-board__wrapper_to-vis-align_center";
+                    peopleCardWrapper = 'leader-board__wrapper_to-vis-align_center';
                 } else if (i % 2 === 0) {
-                    peopleCardWrapper = "leader-board__wrapper_to-vis-align_start";
+                    peopleCardWrapper = 'leader-board__wrapper_to-vis-align_start';
                 } else {
-                    peopleCardWrapper = "leader-board__wrapper_to-vis-align_end";
+                    peopleCardWrapper = 'leader-board__wrapper_to-vis-align_end';
+                }
+
+                let currentUser = data.users[i];
+                if (!inFirstFive && i === 4) {
+                    currentUser = selectedUser;
                 }
             %>
             <div class="leader-board__item <%= itemClasses.join(' ') %>">
                 <div class="leader-board__wrapper <%= peopleCardWrapper %>">
                     <div class="people-card">
                         <div class="people-card__img-wrapper">
-                            <img src="<%= require(`../assets/images/${data.users[i].avatar}`) %>" alt="People card image" class="people-card__img">
+                            <img src="<%= require(`../assets/images/${currentUser.avatar}`) %>" alt="People card image" class="people-card__img">
                         </div>
                         
                         <p class="people-card__body">
-                            <%= data.users[i].name %>
+                            <%= currentUser.name %>
                         </p>
                         <p class="people-card__caption">
-                            <%= data.users[i].valueText %>
+                            <%= currentUser?.valueText %>
                         </p>
 
                         <% if (i === 0) { %>
                             <div class="people-card__emoji">
                                 <%= data.emoji %>
+                            </div>
+                        <% } else if (currentUser.id === data.selectedUserId) { %>
+                            <div class="people-card__emoji">
+                                👍
                             </div>
                         <% } %>
                     </div>
@@ -54,10 +77,37 @@
 
                 <div class="leader-board__bar <%= barClasses.join(' ') %>">
                     <div class="leader-board__score leader-board__wrapper <%= peopleCardWrapper %>">
-                        <%= i + 1 %>
+                        <%= !inFirstFive && i === 4 ? selectedUserPos + 1 : i + 1 %>
                     </div>
+
+                    <% if (!inFirstThree && i === 0) { %>
+                        <div class="leader-board__relative-place">
+                            <div class="people-card people-card_padding-bottom_none">
+                                <div class="people-card__img-wrapper">
+                                    <img src="<%= require(`../assets/images/${selectedUser.avatar}`) %>" alt="People card image" class="people-card__img">
+                                </div>
+                                
+                                <p class="people-card__body">
+                                    <%= selectedUser.name %>
+                                </p>
+                                <p class="people-card__caption people-card__caption_secondary">
+                                    <%= selectedUser?.valueText %>
+                                </p>
+                                <div class="people-card__emoji">
+                                    👍
+                                </div>
+
+                                <div class="divider divider_card-divider"></div>
+                            </div>
+
+                            <div class="leader-board__score leader-board__score_relative-place leader-board__wrapper <%= peopleCardWrapper %>">
+                                <%= selectedUserPos + 1 %>
+                            </div>
+                        </div>
+                    <% } %>
                 </div>
             </div>
-        <% } %> 
+        <% } %>
     </div>
+    <!-- TODO pull request for merging dev in master -->
 </main>

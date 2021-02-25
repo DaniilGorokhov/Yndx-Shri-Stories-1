@@ -1,0 +1,31 @@
+<main class="slide">
+    <div class="slide-description">
+        <p class="slide-description__headline"><%= data.title %></p>
+        <p class="slide-description__caption"><%= data.subtitle %></p>
+    </div>
+
+    <div class="voting-area">
+        <% for (let i = 0; i < 9; i++) { %>
+        <% let currentUser = data.users[i]; %>
+            <div class="people-card">
+                <div class="people-card__img-wrapper">
+                    <img src="<%= require(`../assets/images/${currentUser.avatar}`) %>" alt="People card image" class="people-card__img">
+                </div>
+                
+                <p class="people-card__body">
+                    <%= currentUser.name %>
+                </p>
+                <p class="people-card__caption">
+                    <%= currentUser?.valueText %>
+                </p>
+
+                <% if (currentUser.id === data.selectedUserId) { %>
+                    <div class="people-card__emoji">
+                        👍
+                    </div>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+    <% console.log(data) %>
+</main>

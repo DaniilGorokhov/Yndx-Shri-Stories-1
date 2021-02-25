@@ -1,0 +1,11 @@
+.slide-description__headline {
+    font: var(--headline);
+    color: var(--headline-color);
+    margin: 0;
+}
+
+@media (min-aspect-ratio: 1 / 1) {
+    .slide-description__headline {
+        text-align: center;
+    }
+}

@@ -1,0 +1,16 @@
+.voting-area {
+    padding: 0 1.5rem;
+    display: grid;
+    height: 100%;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    row-gap: 1.5rem;
+    column-gap: 0.5rem;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        padding: 0;
+    }
+}
+
+// TODO add тянущиеся отступы + overflow: hidden для slide

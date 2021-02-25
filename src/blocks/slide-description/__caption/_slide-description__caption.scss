@@ -1,0 +1,10 @@
+.slide-description__caption {
+    padding-top: 0.5em;
+    font: var(--body-font);
+    color: var(--body-font-secondary-color);
+    margin: 0;
+    
+    @media (min-aspect-ratio: 1 / 1) {
+        text-align: center;
+    }
+}

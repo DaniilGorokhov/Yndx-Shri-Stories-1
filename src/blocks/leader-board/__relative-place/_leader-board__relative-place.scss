@@ -1,0 +1,8 @@
+.leader-board__relative-place {
+    position: absolute;
+    bottom: 1rem;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        display: none;
+    }
+}

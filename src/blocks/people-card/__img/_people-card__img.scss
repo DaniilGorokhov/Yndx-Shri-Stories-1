@@ -1,0 +1,9 @@
+.people-card__img {
+    filter: grayscale(1);
+    border-radius: 50%;
+    width: 100%;
+}
+
+body.theme_light .people-card__img {
+    filter: unset;
+}

@@ -46,9 +46,9 @@ module.exports = {
       {
         test: /\.(png|jpg|jpeg|gif)$/,
         type: 'asset/resource',
-        // generator: {
-        //   filename: 'images/[hash][ext][query]',
-        // },
+        generator: {
+          filename: 'images/[hash][ext][query]',
+        },
       },
       {
         test: /\.ttf$/,

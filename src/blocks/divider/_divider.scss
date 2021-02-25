@@ -1,0 +1,10 @@
+.divider {
+    background-color: var(--grey);
+    opacity: 0.3;
+    height: 2px;
+    width: 100%;
+}
+
+body.theme_light .divider {
+    background-color: var(--grey-light);
+}

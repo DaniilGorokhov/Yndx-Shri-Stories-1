@@ -1,0 +1,9 @@
+.leader-board__bar {
+    background: var(--bar-radial-secondary);
+    box-shadow: var(--bar-radial-secondary-shadow);
+    border-top-left-radius: 0.375rem;
+    border-top-right-radius: 0.375rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
