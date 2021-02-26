@@ -30,7 +30,7 @@
 
 
 @import "../blocks/people-card/people-card";
-@import "../blocks/people-card/people-card_padding-bottom_none";
+@import "../blocks/people-card/people-card_padding";
 
 @import "../blocks/people-card/__img-wrapper/people-card__img-wrapper";
 
@@ -42,6 +42,8 @@
 @import "../blocks/people-card/__caption/people-card__caption_secondary";
 
 @import "../blocks/people-card/__emoji/people-card__emoji";
+
+@import "../blocks/people-card/__text-wrapper/people-card__text-wrapper";
 
 
 @import "../blocks/divider/divider";

@@ -2,14 +2,27 @@
     padding: 0 1.5rem;
     display: grid;
     height: 100%;
-    grid-auto-flow: column;
+    grid-template-areas:
+        "card1 slider-up card3"
+        "card1 card2 card3"
+        "card4 card2 card6"
+        "card4 card5 card6"
+        "card7 card5 card8"
+        "card7 slider-down card8";
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    row-gap: 1.5rem;
-    column-gap: 0.5rem;
+    grid-template-rows: repeat(6, 1fr);
 
     @media (min-aspect-ratio: 1 / 1) {
         padding: 0;
+        grid-template-areas:
+            ". card2 slider-up card4 ."
+            "card1 card2 slider-up card4 card6"
+            "card1 card3 slider-down card5 card6"
+            ". card3 slider-down card5 .";
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        justify-content: space-evenly;
+        // TODO horizontal adaptation - equivalent gaps around grid and between grid items
     }
 }
 

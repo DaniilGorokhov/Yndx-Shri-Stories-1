@@ -1,0 +1,25 @@
+.voting-area__slider {
+    place-self: center;    
+    grid-area: slider-up;
+    transform: rotate(180deg);
+    width: 14vw;
+    color: var(--white);
+    transition: color 0.15s ease-in-out;
+    cursor: pointer;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        width: 9vw;
+    }
+}
+
+.voting-area__slider:hover, .voting-area__slider:active {
+    color: var(--grey);
+}
+
+body.theme_light .voting-area__slider {
+    color: var(--yellow);
+}
+
+body.theme_light .voting-area__slider:hover, body.theme_light .voting-area__slider:active {
+    color: var(--grey-light);
+}

@@ -1,9 +1,10 @@
 .people-card__emoji {
     font-family: "Roboto";
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 2em;
     line-height: 1;
     position: absolute;
-    bottom: calc(100% - 1.875rem);
+    bottom: calc(100% - 0.3125em);
+    z-index: 2;
     // TODO check apple emoji
 }

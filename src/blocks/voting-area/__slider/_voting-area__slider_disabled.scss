@@ -1,0 +1,8 @@
+.voting-area__slider_disabled {
+    color: var(--grey);
+    cursor: unset;
+}
+
+body.theme_light .voting-area__slider_disabled {
+    color: var(--grey-light);
+}

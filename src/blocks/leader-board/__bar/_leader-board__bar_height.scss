@@ -6,7 +6,7 @@
             height: 18vh + (ceil($number: $i / 2) - 1) * 5vh;
         }
 
-        @media (min-aspect-ratio: 16 / 9) {
+        @media (min-aspect-ratio: 16 / 9) and (min-width: 1366px) {
             height: 21vh + (ceil($number: $i / 2) - 1) * 7vh;
         }
     }

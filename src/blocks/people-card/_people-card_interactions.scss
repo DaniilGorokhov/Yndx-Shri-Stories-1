@@ -1,0 +1,13 @@
+.people-card_interactions {
+    cursor: pointer;
+}
+
+.people-card_interactions:hover {
+    background: var(--bar-radial-secondary);
+    box-shadow: var(--bar-radial-secondary-shadow);
+}
+
+.people-card_interactions:active {
+    background: var(--bar-radial-primary);
+    box-shadow: var(--bar-radial-primary-shadow);
+}

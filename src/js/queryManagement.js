@@ -3,7 +3,7 @@ import allData from '../assets/data/data.json';
 
 import renderTemplate from './renderTemplate';
 
-function manageQuery() {
+export default function manageQuery() {
   const possibleThemes = ['dark', 'light'];
 
   const queryString = window.location.search;
@@ -21,8 +21,6 @@ function manageQuery() {
   if (theme && possibleThemes.includes(theme[1])) {
     document.body.classList.add(`theme_${theme[1]}`);
   }
-}
 
-window.onload = () => {
-  manageQuery();
-};
+  window.postMessage('slideLoaded', window.location.href);
+}
