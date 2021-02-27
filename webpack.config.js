@@ -18,6 +18,7 @@ module.exports = {
         use: {
           loader: 'ejs-compiled-loader',
           options: {
+            rmWhitespace: true,
             htmlmin: true,
             htmlminOptions: {
               removeComments: true,

@@ -1,0 +1,95 @@
+<main class="slide" data-slide="chart">
+    <div class="slide-description">
+        <div class="slide-description__headline">
+            <%= data.title %>
+        </div>
+        <div class="slide-description__caption">
+            <%= data.subtitle %>
+        </div>
+    </div>
+
+    <div class="chart-wrapper chart-wrapper_vertical-align_end chart-wrapper_vertical-align_horiz-center">
+        <div class="chart-block">
+            <%
+                let maxValue = null;
+                data.values.forEach((item) => {
+                    if (maxValue === null) {
+                        maxValue = item.value;
+                    } else if (item.value > maxValue) {
+                        maxValue = item.value;
+                    }
+                });
+
+                // Need display next 2 zero-height item and 6 before active
+                const activeIndex = data.values.findIndex((item) => item.active);
+                const lastIndex = data.values.length - 1 >= activeIndex + 2 ? activeIndex + 2 : data.values.length - 1;
+                const startIndex = lastIndex - 8 >= 0 ? lastIndex - 8 : 0;
+
+                let wasActive = false;
+                let wasAfterActive = 0;
+                let displayedItems = 0;
+                let afterActive = 0;
+            %>
+            <% for (let i = startIndex; i < data.values.length; i++) { %>
+                <%
+                    if (wasAfterActive >= 2 && displayedItems >= 9) break;
+                    if (wasActive) {
+                        wasAfterActive++;
+                        afterActive++;
+                    }
+                    wasActive = wasActive || data.values[i].active;
+                    displayedItems++;
+                %>
+                <div
+                    class="chart-block__item
+                    <%= afterActive > 2 ? 'chart-block__item_hidden' : '' %>"
+                >
+                    <p
+                        class="chart-block__item-value
+                        <%= data.values[i].active ? 'chart-block__item-value_active' : '' %>"
+                    >
+                        <%= data.values[i].value %>
+                    </p>
+
+                    <div
+                        class="chart-block__item-bar
+                        <%= data.values[i].active ? 'chart-block__item-bar_active' : '' %>"
+                        <%- `style="height: ${70 * (data.values[i].value / maxValue)}%"` %>
+                    ></div>
+
+                    <p class="chart-block__item-title">
+                        <%= data.values[i].title %>
+                    </p>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="chart-leaders">
+            <% for (let i = 0; i < 2; i++) { %>
+                <div class="people-card people-card_direction_row people-card_padding_0">
+                    <div class="people-card__img-wrapper">
+                        <img
+                            class="people-card__img"
+                            src="<%= require(`../assets/images/${data.users[i].avatar}`) %>"
+                            alt="People card image"
+                        >
+                    </div>
+
+                    <div class="people-card__text-wrapper">
+                        <p class="people-card__body">
+                            <%= data.users[i].name %>
+                        </p>
+
+                        <p class="people-card__caption">
+                            <%= data.users[i].valueText %>
+                        </p>
+                    </div>
+                </div>
+
+                <% if (i === 0) { %>
+                    <div class="divider divider_revert_color divider_margin-vertical_1 divider_horizontal-revert"></div>
+                <% } %> 
+            <% } %>
+        </div>
+    </div>
+</main>

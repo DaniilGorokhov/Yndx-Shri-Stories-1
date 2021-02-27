@@ -1,6 +1,7 @@
 // Templates TODO add new templates
 import leadersTemp from '../templates/leaders.ejs';
 import voteTemp from '../templates/vote.ejs';
+import chartTemp from '../templates/chart.ejs';
 
 export default function renderTemplate(alias, data) {
   let renderedTemplate;
@@ -11,6 +12,9 @@ export default function renderTemplate(alias, data) {
       break;
     case 'vote':
       renderedTemplate = voteTemp({ data });
+      break;
+    case 'chart':
+      renderedTemplate = chartTemp({ data });
       break;
     default:
       throw new Error('Invalid template alias');

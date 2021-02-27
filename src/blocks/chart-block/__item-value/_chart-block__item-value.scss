@@ -1,0 +1,10 @@
+.chart-block__item-value {
+    margin: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font: var(--subhead);
+    color: var(--subhead-secondary-color);
+    text-align: center;
+    padding-bottom: 0.5rem;
+}

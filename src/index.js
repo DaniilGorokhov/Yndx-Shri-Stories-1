@@ -1,13 +1,9 @@
 import './scss/main.scss';
 import manageQuery from './js/queryManagement';
-import { initVoteSlide, voteResize } from './js/vote';
+import { initVoteSlide } from './js/vote';
 
 window.onload = () => {
   manageQuery();
-};
-
-window.onresize = () => {
-  voteResize();
 };
 
 // This is needed for executing js after slide loading

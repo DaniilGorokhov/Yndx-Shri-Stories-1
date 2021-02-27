@@ -11,19 +11,17 @@
         "card7 slider-down card8";
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(6, 1fr);
+    transition: height 0s ease-in-out;
 
     @media (min-aspect-ratio: 1 / 1) {
         padding: 0;
         grid-template-areas:
-            ". card2 slider-up card4 ."
-            "card1 card2 slider-up card4 card6"
-            "card1 card3 slider-down card5 card6"
-            ". card3 slider-down card5 .";
-        grid-template-columns: repeat(5, 1fr);
+            ". card2 sliders card4 ."
+            "card1 card2 sliders card4 card6"
+            "card1 card3 sliders card5 card6"
+            ". card3 sliders card5 .";
+        grid-template-columns: repeat(5, min-content);
         grid-template-rows: repeat(4, 1fr);
         justify-content: space-evenly;
-        // TODO horizontal adaptation - equivalent gaps around grid and between grid items
     }
 }
-
-// TODO add тянущиеся отступы + overflow: hidden для slide

@@ -18,41 +18,47 @@ export function selectUser(event) {
   }
 
   const target = event.path.find((item) => item.classList.contains('people-card'));
-  target.classList.toggle('people-card_selected');
+  if (target !== oldSelected) {
+    target.classList.toggle('people-card_selected');
 
-  getPeopleCardEmoji(target.children).classList.toggle('people-card__emoji_hidden');
-}
-
-function updateSlideDownParams(newOffset) {
-  const slideDown = document.querySelectorAll('.voting-area__slider')[1];
-
-  slideDown.dataset.params = JSON.stringify({
-    alias: 'vote',
-    data: {
-      offset: +newOffset,
-    },
-  });
-}
-
-export function voteResize() {
-  const main = document.getElementsByTagName('main');
-  if (!main || !main[0] || main[0].dataset.slide !== 'vote') return;
-
-  const peopleCards = Array.from(document.querySelectorAll('.people-card'));
-
-  const aspectRatio = window.innerWidth / window.innerHeight;
-  if (aspectRatio >= 1) {
-    const horizontalLastUser = peopleCards.find((item) => item.dataset.horizontalSlideOffset);
-    const { horizontalSlideOffset } = horizontalLastUser.dataset;
-
-    updateSlideDownParams(horizontalSlideOffset);
-  } else {
-    const verticalLastUser = peopleCards.find((item) => item.dataset.verticalSlideOffset);
-    const { verticalSlideOffset } = verticalLastUser.dataset;
-
-    updateSlideDownParams(verticalSlideOffset);
+    getPeopleCardEmoji(target.children).classList.toggle('people-card__emoji_hidden');
   }
 }
+
+// let startPositionY = null;
+// let heightModifier = 0;
+// let initialVotingAreaHeight;
+// let minVotingAreaHeight;
+
+// function touchStart(event) {
+// const votingArea = document.querySelector('.voting-area');
+// initialVotingAreaHeight = window.getComputedStyle(votingArea).getPropertyValue('height');
+
+// startPositionY = Math.round(event.touches[0].clientY);
+// }
+
+// function touchMove(event) {
+// if (startPositionY === null) return;
+
+// const currentPositionY = Math.round(event.touches[0].clientY);
+// const votingArea = document.querySelector('.voting-area');
+// const differenceY = currentPositionY - startPositionY;
+
+// if (window.scrollY === 0) {
+//   const currentHeight = parseInt(votingArea.style.height);
+//   if (differenceY > 0 && 1) {
+//     votingArea.style.height = `${parseInt(initialVotingAreaHeight, 10) + differenceY}px`;
+//   }
+// } else {
+//   votingArea.style.height = `${parseInt(initialVotingAreaHeight, 10) -   differenceY}px`;
+// }
+// }
+
+// function touchEnd() {
+// startPositionY = null;
+// const votingArea = document.querySelector('.voting-area');
+// votingArea.style.height = initialVotingAreaHeight;
+// }
 
 export function initVoteSlide() {
   const main = document.getElementsByTagName('main');
@@ -63,7 +69,8 @@ export function initVoteSlide() {
     peopleCards[i].addEventListener('click', selectUser);
   }
 
-  // voteResize involving is necessary,
-  // since not all browsers emit resize event after page had loaded
-  voteResize();
+  // TODO тянущиеся отступы
+  // window.addEventListener('touchstart', touchStart);
+  // window.addEventListener('touchmove', touchMove);
+  // window.addEventListener('touchend', touchEnd);
 }

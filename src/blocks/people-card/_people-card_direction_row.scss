@@ -1,0 +1,25 @@
+.people-card_direction_row {
+    flex-flow: row nowrap;
+    width: unset;
+    justify-content: flex-start;
+    min-width: 35vw;
+}
+
+.people-card_direction_row .people-card__img-wrapper {
+    width: 2.5rem;
+    padding-right: 0.875rem;
+}
+
+.people-card_direction_row .people-card__text-wrapper {
+    max-width: unset;
+}
+
+.people-card_direction_row .people-card__body {
+    text-align: unset;
+    padding: 0;
+}
+
+.people-card_direction_row .people-card__caption {
+    text-align: unset;
+    padding: 0.25rem 0 0;
+}

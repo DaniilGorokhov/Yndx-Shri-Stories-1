@@ -3,6 +3,7 @@
 
 @import "leaders";
 @import "vote";
+@import "chart";
 
 :root {
     box-sizing: border-box;
@@ -21,20 +22,21 @@ body.theme_light {
     background: #FFFFFF;
 }
 
-@media screen and (max-width: 1919px) {
+@media (max-width: 1919px) {
     :root {
         font-size: 1.5em;
     }
 }
 
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
     :root {
         font-size: 1em;
     }
 }
 
-@media screen and (max-width: 320px) {
+@media (max-width: 320px), (max-height: 320px) {
     :root {
         font-size: 0.85em;
     }
 }
+// TODO screen media
