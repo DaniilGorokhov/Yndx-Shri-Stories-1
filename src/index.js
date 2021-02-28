@@ -1,7 +1,9 @@
 import './scss/main.scss';
 import manageQuery from './js/queryManagement';
-import initVoteSlide from './js/vote';
-import initChartSlide from './js/chart';
+
+import initVoteSlide from './js/vote/vote';
+
+import initChartSlide from './js/chart/chart';
 
 window.onload = () => {
   manageQuery();

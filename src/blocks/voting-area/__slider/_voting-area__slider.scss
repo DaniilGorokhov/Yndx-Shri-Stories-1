@@ -5,6 +5,7 @@
     width: 14vw;
     color: var(--white);
     transition: color 0.15s ease-in-out;
+    display: flex;
     cursor: pointer;
 
     @media (min-aspect-ratio: 1 / 1) {

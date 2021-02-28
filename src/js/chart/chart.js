@@ -59,7 +59,7 @@ function touchEnd(event) {
   Array.prototype.forEach.call(chartBlockItems, (item) => {
     item.setAttribute(
       'style',
-      'transition: margin-right .15s ease-in-out',
+      'transition: margin-right 0.15s ease-in-out',
     );
   });
 }
