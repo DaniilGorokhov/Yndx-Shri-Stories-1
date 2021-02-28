@@ -1,6 +1,7 @@
 import './scss/main.scss';
 import manageQuery from './js/queryManagement';
-import { initVoteSlide } from './js/vote';
+import initVoteSlide from './js/vote';
+import initChartSlide from './js/chart';
 
 window.onload = () => {
   manageQuery();
@@ -12,4 +13,5 @@ window.addEventListener('message', (event) => {
   if (!possibleMessages.includes(event.data)) return;
 
   initVoteSlide();
+  initChartSlide();
 });

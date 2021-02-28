@@ -9,7 +9,7 @@ function getPeopleCardEmoji(elements) {
   );
 }
 
-export function selectUser(event) {
+function selectUser(event) {
   const oldSelected = document.querySelector('.people-card_selected');
   if (oldSelected) {
     oldSelected.classList.remove('people-card_selected');
@@ -60,9 +60,9 @@ export function selectUser(event) {
 // votingArea.style.height = initialVotingAreaHeight;
 // }
 
-export function initVoteSlide() {
-  const main = document.getElementsByTagName('main');
-  if (!main || !main[0] || main[0].dataset.slide !== 'vote') return;
+export default function initVoteSlide() {
+  const main = document.querySelector('main');
+  if (!main || main.dataset.slide !== 'vote') return;
 
   const peopleCards = document.querySelectorAll('.people-card');
   for (let i = 0; i < peopleCards.length; i += 1) {

@@ -6,8 +6,10 @@
     flex-flow: row nowrap;
 
     @media (min-aspect-ratio: 1 / 1) {
-        padding: 2rem 3.5rem 0;
         height: 45vh;
         justify-content: center;
+        min-width: 70vw;
+        padding: 0 15vw;
+        cursor: grab;
     }
 }
