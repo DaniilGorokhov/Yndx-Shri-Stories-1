@@ -1,0 +1,49 @@
+$marker-colors-dark: (
+    radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(255, 163, 0, 0.8) 71.88%, rgba(91, 58, 0, 0.8) 100%),
+    radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(99, 63, 0, 0.5) 72.92%, rgba(15, 9, 0, 0.5) 100%),
+    radial-gradient(100% 100% at 50% 0%, rgb(151, 151, 151, 0.5) 0%, rgb(86, 86, 86) 100%),
+    radial-gradient(100% 100% at 50% 0%, rgba(62, 62, 62, 0.5) 0%, rgb(50, 50, 50) 100%),
+);
+
+$marker-1-shadows-dark: 0 0 1.25em 0 rgba(#ffa200, $alpha: 0.9) inset, -1px 1px 1px 0 rgba(#fff, $alpha: 0.5) inset, 0 0 20px -8px rgba(#f89e00, $alpha: 0.2);
+$marker-2-shadows-dark: 0 0 1.25em 0 rgba(#ca8100, $alpha: 0.9) inset, -1px 1px 1px 0 rgba(#fff, $alpha: 0.5) inset, 0 0 20px -8px rgba(#935d00, $alpha: 0.2);
+$marker-3-shadows-dark: -0.0625em 0.0625em 0.0625em 0 rgba(#fff, $alpha: 0.5) inset;
+$marker-4-shadows-dark: -0.0625em 0.0625em 0.0625em 0 rgba(#fff, $alpha: 0.5) inset;
+$marker-shadows-dark: (
+    $marker-1-shadows-dark,
+    $marker-2-shadows-dark,
+    $marker-3-shadows-dark,
+    $marker-4-shadows-dark,
+);
+
+
+$marker-colors-light: (
+    radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(255, 184, 0, 0.56) 81.25%, rgba(255, 239, 153, 0.32) 100%),
+    radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(255, 184, 0, 0.24) 81.25%, rgba(255, 239, 153, 0.12) 100%),
+    radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(166, 166, 166, 0.1725) 82.81%, rgba(203, 203, 203, 0.05) 92.19%),
+    radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(191, 191, 191, 0.345) 82.81%, rgba(228, 228, 228, 0.1) 92.19%),
+);
+
+$marker-1-shadows-light: 0 0 1.25em 0 rgba(#ffb039, $alpha: 0.9) inset, -1px 1px 1px 0 rgba(#fff, $alpha: 0.5) inset;
+$marker-2-shadows-light: 0 0 1.25em 0 rgba(#ffb039, $alpha: 0.4) inset, -1px 1px 1px 0 rgba(#fff, $alpha: 0.5) inset;
+$marker-3-shadows-light: 0 0 1.25em 0 rgba(#696969, $alpha: 0.2) inset, -1px 1px 1px 0 rgba(#fff, $alpha: 0.5) inset;
+$marker-4-shadows-light: 0 0 1.25em 0 rgba(#838383, $alpha: 0.6) inset, -1px 1px 1px 0 rgba(#fff, $alpha: 0.5) inset;
+$marker-shadows-light: (
+    $marker-1-shadows-light,
+    $marker-2-shadows-light,
+    $marker-3-shadows-light,
+    $marker-4-shadows-light,
+);
+
+
+@for $i from 1 through 4 {
+    .diagram-categories-item__marker_color_#{$i} {
+        background: nth($marker-colors-dark, $i);
+        box-shadow: nth($marker-shadows-dark, $i);
+    }
+
+    body.theme_light .diagram-categories-item__marker_color_#{$i} {
+        background: nth($marker-colors-light, $i);
+        box-shadow: nth($marker-shadows-light, $i);
+    }
+}

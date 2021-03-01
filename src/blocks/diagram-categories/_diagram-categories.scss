@@ -1,0 +1,13 @@
+.diagram-categories {
+    width: calc(100% - 3rem);
+    padding: 2rem 1.5rem 1.5rem;
+    display: flex;
+    flex-flow: column nowrap;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        width: 42vw;
+        max-width: 65vh;
+        min-width: 30vw;
+        justify-content: center;
+    }
+}

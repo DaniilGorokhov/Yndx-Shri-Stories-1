@@ -1,0 +1,9 @@
+.diagram-block__description-caption {
+    font: var(--body-font);
+    color: var(--body-font-secondary-color);
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-top: 0.5rem;
+}

@@ -1,7 +1,7 @@
-.divider_horizontal-revert {
+div.divider_horizontal-revert {
     @media (min-aspect-ratio: 1 / 1) {
         height: 2.5rem;
-        width: 2px;
+        width: 0.125rem;
         margin: 0 1rem;
     }
 }

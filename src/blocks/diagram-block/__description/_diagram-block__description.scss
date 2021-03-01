@@ -1,0 +1,10 @@
+.diagram-block__description {
+    position: absolute;
+    border-radius: 50%;
+    width: min-content;
+    max-width: 60%;
+    height: 40%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}

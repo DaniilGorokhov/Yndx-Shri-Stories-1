@@ -2,6 +2,7 @@
 import leadersTemp from '../templates/leaders.ejs';
 import voteTemp from '../templates/vote.ejs';
 import chartTemp from '../templates/chart.ejs';
+import diagramTemp from '../templates/diagram.ejs';
 
 export default function renderTemplate(alias, data) {
   let renderedTemplate;
@@ -15,6 +16,9 @@ export default function renderTemplate(alias, data) {
       break;
     case 'chart':
       renderedTemplate = chartTemp({ data });
+      break;
+    case 'diagram':
+      renderedTemplate = diagramTemp({ data });
       break;
     default:
       throw new Error('Invalid template alias');

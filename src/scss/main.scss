@@ -1,9 +1,10 @@
 @import "fonts";
 @import "vars";
 
-@import "leaders";
-@import "vote";
-@import "chart";
+@import "slides/leaders";
+@import "slides/vote";
+@import "slides/chart";
+@import "slides/diagram";
 
 :root {
     box-sizing: border-box;
@@ -12,14 +13,14 @@
 }
 
 body {
-    background: radial-gradient(70.24% 70.24% at 49.87% 29.76%, rgba(18, 12, 1, 0.9) 0%, #000000 100%);
+    background: radial-gradient(70.24% 70.24% at 49.87% 29.76%, rgba(18, 12, 1, 0.9) 0%, #000 100%);
     min-height: 100vh;
     min-width: 100%;
     margin: 0;
 }
 
 body.theme_light {
-    background: #FFFFFF;
+    background: #fff;
 }
 
 @media (max-width: 1919px) {

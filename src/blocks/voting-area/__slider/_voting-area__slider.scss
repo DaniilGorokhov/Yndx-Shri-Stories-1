@@ -1,5 +1,5 @@
 .voting-area__slider {
-    place-self: center;    
+    place-self: center;
     grid-area: slider-up;
     transform: rotate(180deg);
     width: 14vw;
@@ -14,7 +14,8 @@
     }
 }
 
-.voting-area__slider:hover, .voting-area__slider:active {
+.voting-area__slider:hover,
+.voting-area__slider:active {
     color: var(--grey);
 }
 
@@ -22,6 +23,7 @@ body.theme_light .voting-area__slider {
     color: var(--yellow);
 }
 
-body.theme_light .voting-area__slider:hover, body.theme_light .voting-area__slider:active {
+body.theme_light .voting-area__slider:hover,
+body.theme_light .voting-area__slider:active {
     color: var(--grey-light);
 }
