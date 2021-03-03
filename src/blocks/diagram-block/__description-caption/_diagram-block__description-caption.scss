@@ -1,9 +1,13 @@
 .diagram-block__description-caption {
-    font: var(--body-font);
-    color: var(--body-font-secondary-color);
+    font: var(--subhead);
+    color: var(--subhead-secondary-color);
     text-align: center;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     padding-top: 0.5rem;
+
+    @media (min-aspect-ratio: 1 / 1) and (max-width: 1024px) {
+        font: var(--body-font);
+    }
 }

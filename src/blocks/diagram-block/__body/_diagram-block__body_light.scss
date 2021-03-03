@@ -1,7 +1,7 @@
-.diagram-block__body_light {
+.diagram-block__body.diagram-block__body_light {
     display: none;
 }
 
-body.theme_light .diagram-block__body_light {
+body.theme_light .diagram-block__body.diagram-block__body_light {
     display: unset;
 }

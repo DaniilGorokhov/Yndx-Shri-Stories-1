@@ -1,0 +1,11 @@
+.slide-body-wrapper.slide-body-wrapper_vertical-align_end {
+    align-items: flex-end;
+}
+
+.slide-body-wrapper.slide-body-wrapper_vertical-align_vert-end {
+    align-items: flex-end;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        align-items: unset;
+    }
+}

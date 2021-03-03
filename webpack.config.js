@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 
@@ -46,7 +47,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/,
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
         type: 'asset/resource',
         generator: {
           filename: 'images/[hash][ext][query]',
@@ -71,5 +72,11 @@ module.exports = {
     }),
     new EslintWebpackPlugin(),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new CssMinimizerWebpackPlugin(),
+    ],
+  },
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 };

@@ -20,7 +20,7 @@
                     }
                 });
 
-                // Need display next 2 zero-height item and 6 before active
+                // Need display next 2 zero-height item and 6 before active (max)
                 const activeIndex = data.values.findIndex((item) => item.active);
                 const lastIndex = data.values.length - 1 >= activeIndex + 2 ? activeIndex + 2 : data.values.length - 1;
                 const startIndex = lastIndex - 8 >= 0 ? lastIndex - 8 : 0;
@@ -48,7 +48,7 @@
                         class="chart-block__item-value
                         <%= data.values[i].active ? 'chart-block__item-value_active' : '' %>"
                     >
-                        <%= data.values[i].value %>
+                        <%= data.values[i].value !== 0 ? data.values[i].value : '' %>
                     </p>
 
                     <div

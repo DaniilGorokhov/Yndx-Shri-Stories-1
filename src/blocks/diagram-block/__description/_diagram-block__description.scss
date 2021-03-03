@@ -1,10 +1,14 @@
 .diagram-block__description {
     position: absolute;
     border-radius: 50%;
-    width: min-content;
-    max-width: 60%;
+    width: max-content;
+    max-width: min(50vw, 25vh);
     height: 40%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        max-width: min(32.5vh, 21vw);
+    }
 }

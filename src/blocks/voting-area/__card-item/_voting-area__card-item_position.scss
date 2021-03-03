@@ -1,5 +1,5 @@
 @for $i from 1 through 8 {
-    .voting-area__card-item_position_#{$i} {
+    .voting-area__card-item.voting-area__card-item_position_#{$i} {
         grid-area: card#{$i};
 
         @if ($i >= 7) {

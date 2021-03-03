@@ -15,10 +15,10 @@
     @media (min-aspect-ratio: 1 / 1) {
         padding: 0;
         grid-template-areas:
-            ". card2 sliders card4 ."
-            "card1 card2 sliders card4 card6"
-            "card1 card3 sliders card5 card6"
-            ". card3 sliders card5 .";
+            ". card2 sliders card3 ."
+            "card1 card2 sliders card3 card4"
+            "card1 card5 sliders card6 card4"
+            ". card5 sliders card6 .";
         grid-template-columns: repeat(5, min-content);
         grid-template-rows: repeat(4, 1fr);
         justify-content: space-evenly;

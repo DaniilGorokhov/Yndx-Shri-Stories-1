@@ -5,6 +5,7 @@
 @import "slides/vote";
 @import "slides/chart";
 @import "slides/diagram";
+@import "slides/activity";
 
 :root {
     box-sizing: border-box;
@@ -17,6 +18,7 @@ body {
     min-height: 100vh;
     min-width: 100%;
     margin: 0;
+    text-size-adjust: none;
 }
 
 body.theme_light {

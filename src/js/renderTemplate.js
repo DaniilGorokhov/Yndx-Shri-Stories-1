@@ -1,11 +1,14 @@
-// Templates TODO add new templates
 import leadersTemp from '../templates/leaders.ejs';
 import voteTemp from '../templates/vote.ejs';
 import chartTemp from '../templates/chart.ejs';
 import diagramTemp from '../templates/diagram.ejs';
+import activityTemp from '../templates/activity.ejs';
+
+import prepareActivityData from './activity/prepareActivityData';
 
 export default function renderTemplate(alias, data) {
   let renderedTemplate;
+  let preparedData;
 
   switch (alias) {
     case 'leaders':
@@ -19,6 +22,10 @@ export default function renderTemplate(alias, data) {
       break;
     case 'diagram':
       renderedTemplate = diagramTemp({ data });
+      break;
+    case 'activity':
+      preparedData = prepareActivityData(data);
+      renderedTemplate = activityTemp(preparedData);
       break;
     default:
       throw new Error('Invalid template alias');

@@ -1,5 +1,5 @@
 @for $i from 1 through 5 {
-    .leader-board__bar_height_#{$i} {
+    .leader-board__bar.leader-board__bar_height_#{$i} {
         height: 14vh + $i * 7vh;
 
         @media (min-aspect-ratio: 1 / 1) {

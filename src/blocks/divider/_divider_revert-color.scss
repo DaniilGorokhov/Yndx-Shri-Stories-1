@@ -1,7 +1,7 @@
-.divider_revert_color {
+.divider.divider_revert_color {
     background-color: var(--grey);
 }
 
-body.theme_light .divider_revert_color {
+body.theme_light .divider.divider_revert_color {
     background-color: var(--grey-light);
 }

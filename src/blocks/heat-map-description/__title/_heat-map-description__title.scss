@@ -1,0 +1,10 @@
+.heat-map-description__title {
+    font: var(--body-font);
+    color: var(--body-font-secondary-color);
+    margin: 0;
+    padding-top: 0.5rem;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        text-align: center;
+    }
+}

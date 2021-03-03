@@ -17,7 +17,7 @@
     }
 
     @media (min-aspect-ratio: 1 / 1) {
-        min-width: 4vw;
+        min-width: 6vw;
         max-width: 9vw;
         margin-right: 3.5vw;
         user-select: none;
@@ -37,6 +37,10 @@
             &:nth-child(1) {
                 display: none;
             }
+        }
+
+        @media (min-width: 1024px) {
+            min-width: 4vw;
         }
 
         @media (min-width: 1366px) {

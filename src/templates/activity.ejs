@@ -1,0 +1,123 @@
+<main class="slide slide_horizontal-align_between" data-slide="activity">
+    <div class="slide-description">
+        <p class="slide-description__headline">
+            <%= data.title %>
+        </p>
+
+        <p class="slide-description__caption">
+            <%= data.subtitle %>
+        </p>
+    </div>
+
+    <div
+        class="slide-body-wrapper slide-body-wrapper_direction_column slide-body-wrapper_height_vert-100
+        slide-body-wrapper_horizontal-align_end slide-body-wrapper_vertical-align_vert-end slide-body-wrapper_flex"
+    >
+        <div class="heat-map-block">
+            <% for (let hourIx = 0; hourIx < data.heatMap[0].length; hourIx += 1) { %>
+                <div class="heat-map-block__line">
+                    <% if (hourIx % 2 === 1) { %>
+                        <div class="heat-map-block__item heat-map-block__item_placeholder"></div>
+                    <% } %>
+
+                    <% for (let dayIx = 0; dayIx < data.heatMap.length; dayIx += 1) { %>
+                        <div class="heat-map-block__item">
+                            <img
+                                class="heat-map-block__item-value heat-map-block__item-value_theme_dark"
+                                src="<%= require(`../assets/svg/${data.heatMap[dayIx][hourIx]}-dark.svg`) %>"
+                                alt="Heat map item"
+                            >
+
+                            <img
+                                class="heat-map-block__item-value heat-map-block__item-value_theme_light"
+                                src="<%= require(`../assets/svg/${data.heatMap[dayIx][hourIx]}-light.svg`) %>"
+                                alt="Heat map item"
+                            >
+                        </div>
+                    <% } %>
+
+                    <% if (hourIx % 2 === 0) { %>
+                        <div class="heat-map-block__item heat-map-block__item_placeholder"></div>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="heat-map-block heat-map-block_reduced">
+            <% for (let dayIx = 0; dayIx < data.reducedHeatMap.length; dayIx += 1) { %>
+                <div
+                    class="heat-map-block__line
+                    <%= dayIx !== 0 ? `heat-map-block__line_margin_top-${dayIx}` : '' %>"
+                >
+                    <% if (dayIx % 2 === 1) { %>
+                        <div class="heat-map-block__item heat-map-block__item_placeholder"></div>
+                    <% } %>
+
+                    <% for (let hourIx = 0; hourIx < data.reducedHeatMap[dayIx].length; hourIx += 1) { %>
+                        <div class="heat-map-block__item">
+                            <img
+                                class="heat-map-block__item-value heat-map-block__item-value_theme_dark"
+                                src="<%= require(`../assets/svg/${data.reducedHeatMap[dayIx][hourIx]}-dark.svg`) %>"
+                                alt="Heat map item"
+                            >
+
+                            <img
+                                class="heat-map-block__item-value heat-map-block__item-value_theme_light"
+                                src="<%= require(`../assets/svg/${data.reducedHeatMap[dayIx][hourIx]}-light.svg`) %>"
+                                alt="Heat map item"
+                            >
+                        </div>
+                    <% } %>
+
+                    <% if (dayIx % 2 === 0) { %>
+                        <div class="heat-map-block__item heat-map-block__item_placeholder"></div>
+                    <% } %>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="heat-map-description">
+            <div class="heat-map-description__item">
+                <div class="heat-map-description__indicator heat-map-description__indicator_special"></div>
+
+                <div class="heat-map-description__title">
+                    1 час
+                </div>
+            </div>
+            <% for (let i = 0; i < data.intervals.length; i++) { %>
+                <div class="heat-map-description__item">
+                    <div
+                        class="heat-map-description__indicator
+                        heat-map-description__indicator_color-<%= i + 1 %>"
+                    ></div>
+
+                    <div class="heat-map-description__title">
+                        <%= data.intervals[i] %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+
+        <div class="heat-map-description heat-map-description_reduced">
+            <div class="heat-map-description__item">
+                <div class="heat-map-description__indicator heat-map-description__indicator_special"></div>
+
+                <div class="heat-map-description__title">
+                    2 часа
+                </div>
+            </div>
+            <% for (let i = 0; i < data.intervals.length; i++) { %>
+                <div class="heat-map-description__item">
+                    <div
+                        class="heat-map-description__indicator
+                        heat-map-description__indicator_color-<%= i + 1 %>"
+                    ></div>
+
+                    <div class="heat-map-description__title">
+                        <%= data.intervals[i] %>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</main>

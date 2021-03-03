@@ -1,5 +1,5 @@
 @for $i from 1 through 5 {
-    .leader-board__item_order_#{$i} {
+    .leader-board__item.leader-board__item_order_#{$i} {
         order: $i;
     }
 }

@@ -1,4 +1,4 @@
-<main class="slide slide_horizontal-align_between">
+<main class="slide slide_horizontal-align_between" data-slide="diagram">
     <div class="slide-description">
         <p class="slide-description__headline">
             <%= data.title %> 
@@ -8,7 +8,10 @@
         </p>
     </div>
 
-    <div class="diagram-wrapper">
+    <div
+        class="slide-body-wrapper slide-body-wrapper_height_vert-100 slide-body-wrapper_flex
+        slide-body-wrapper_vertical-align_vert-end slide-body-wrapper_wrap slide-body-wrapper_horizontal-align"
+    >
         <div class="diagram-block">
             <div class="diagram-block__description">
                 <p class="diagram-block__description-title">
@@ -20,26 +23,27 @@
             </div>
 
             <%
-                const CIRCLE_LENGTH = 251;
+                const CIRCLE_LENGTH = 267;
                 const values = data.categories.map((item) => parseFloat(item.valueText));
                 const valuesSum = parseFloat(data.totalText);
                 const degUnit = valuesSum / CIRCLE_LENGTH;
 
                 let sumBefore = 0;
                 const diagramData = values.map((item) => {
-                    let result = [item / degUnit, sumBefore += 2 * degUnit];
+                    let result = [item / degUnit, sumBefore += 1.5 * degUnit];
                     sumBefore += item / degUnit;
                     return result;
                 });
 
-                const darkColors = ['#FFA300', '#633F00', '#4D4D4D', '#9B9B9B'];
+                const darkColors = ['#ee9700', '#966000', '#6b6b6b', '#515151'];
+                const lightColors = ['#ffbe4c', '#ffdc9a', '#dcdcdc', '#bdbdbd'];
 
                 const lightOpacity = ['0.8', '0.4', '0.69', '0.69'];
             %>
             <svg class="diagram-block__body" viewBox="0 0 100 100">
                 <% for (let i = 0; i < 4; i++) { %>
                     <circle
-                        cx="50" cy="50" r="40" filter="url(#filter<%= i %>_dii)" stroke="<%= darkColors[i] %>"
+                        cx="50" cy="50" r="42.5" stroke="<%= darkColors[i] %>"
                         stroke-dasharray="<%= diagramData[i][0] %> 267" stroke-dashoffset="-<%= diagramData[i][1] %>"
                         stroke-width="15" fill="transparent"
                     />
@@ -100,14 +104,15 @@
                     <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
                     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                     <feOffset/>
-                    <feGaussianBlur stdDeviation="5"/>
+                    <feGaussianBlur stdDeviation="10"/>
                     <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.6 0 0 0 0 0.6 0 0 0 0 0.6 0 0 0 0.9 0"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0.545833 0 0 0 0 0.545833 0 0 0 0 0.545833 0 0 0 0.9 0"/>
                     <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
                     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
-                    <feGaussianBlur stdDeviation="0.2"/>
+                    <feOffset dx="-1" dy="1"/>
+                    <feGaussianBlur stdDeviation="0.5"/>
                     <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0 0.5 0 0 0 0.5 0"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
                     <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
                     </filter>
 
@@ -117,27 +122,48 @@
                     <feMorphology radius="8" operator="erode" in="SourceAlpha" result="effect1_dropShadow"/>
                     <feOffset/>
                     <feGaussianBlur stdDeviation="10"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 3 0 0 0 0 3 0 0 0 0 3 0 0 0 0.2 0"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0.375 0 0 0 0 0.375 0 0 0 0 0.375 0 0 0 0.2 0"/>
                     <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
                     <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
                     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                     <feOffset/>
-                    <feGaussianBlur stdDeviation="12"/>
+                    <feGaussianBlur stdDeviation="10"/>
                     <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
                     <feColorMatrix type="matrix" values="0 0 0 0 0.15 0 0 0 0 0.15 0 0 0 0 0.15 0 0 0 0.9 0"/>
                     <feBlend mode="normal" in2="shape" result="effect2_innerShadow"/>
                     <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
                     <feOffset dx="-1" dy="1"/>
-                    <feGaussianBlur stdDeviation="0.1"/>
-                    <feColorMatrix type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.5 0"/>
+                    <feGaussianBlur stdDeviation="0.5"/>
+                    <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0"/>
                     <feBlend mode="normal" in2="effect2_innerShadow" result="effect3_innerShadow"/>
                     </filter>
+
+                    <radialGradient id="radial-dark-0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(89.4859 176.514) rotate(90) scale(163.486)">
+                        <stop offset="0.71875" stop-color="#FFA300"/>
+                        <stop offset="1" stop-color="#5B3A00"/>
+                    </radialGradient>
+
+                    <radialGradient id="radial-dark-1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(-47.5141 152.514) rotate(90) scale(163.486)">
+                        <stop offset="0.729167" stop-color="#633F00"/>
+                        <stop offset="1" stop-color="#0F0900"/>
+                    </radialGradient>
+
+                    <radialGradient id="radial-dark-2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(85.4859 5.51411) rotate(90) scale(163.486)">
+                        <stop offset="0.71875" stop-color="#9B9B9B"/>
+                        <stop offset="1" stop-color="#382900"/>
+                    </radialGradient>
+
+                    <radialGradient id="radial-dark-3" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175.486 152.514) rotate(90) scale(163.486)">
+                    <stop offset="0.71875" stop-color="#4D4D4D"/>
+                    <stop offset="1" stop-color="#382900"/>
+                    </radialGradient>
                 </defs>
             </svg>
             <svg class="diagram-block__body diagram-block__body_light" viewBox="0 0 100 100">
                 <% for (let i = 0; i < 4; i++) { %>
                     <circle
-                        cx="50" cy="50" r="40" filter="url(#filter<%= i %>_ii)" stroke="url(#radial-light-<%= i %>)"
+                        cx="50" cy="50" r="42.5" stroke="<%= lightColors[i] %>"
                         stroke-dasharray="<%= diagramData[i][0] %> 267" stroke-dashoffset="-<%= diagramData[i][1] %>"
                         stroke-width="15" fill="transparent" opacity="<%= lightOpacity[i] %>"
                     />
