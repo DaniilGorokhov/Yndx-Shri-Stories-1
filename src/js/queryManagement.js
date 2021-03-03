@@ -5,7 +5,7 @@ import faviconDark from '../assets/images/favicon-dark.png';
 import renderTemplate from './renderTemplate';
 
 export default function manageQuery() {
-  const possibleThemes = ['dark', 'light'];
+  // const possibleThemes = ['dark', 'light'];
 
   const queryString = window.location.search;
   const queryStringParser = (str) => str.replace('?', '').split('&').map((item) => item.split('='));
@@ -19,16 +19,15 @@ export default function manageQuery() {
   if (slide && slide[1] < 12 && slide[1] > 0) {
     neededDataIndex = slide[1] - 1;
   } else {
-    console.info('Номер слайда указан неверно. Слайд номер 1 показывается по умолчанию');
     neededDataIndex = 0;
   }
 
   document.body.innerHTML = renderTemplate(allData[neededDataIndex].alias,
     allData[neededDataIndex].data);
 
-  if (theme && possibleThemes.includes(theme[1])) {
-    document.body.classList.add(`theme_${theme[1]}`);
-  }
+  // if (theme && possibleThemes.includes(theme[1])) {
+  //   document.body.classList.add(`theme_${theme[1]}`);
+  // }
 
   const link = document.createElement('link');
   link.rel = 'icon';

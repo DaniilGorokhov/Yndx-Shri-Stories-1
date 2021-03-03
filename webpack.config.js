@@ -1,5 +1,4 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
@@ -63,9 +62,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin({
-      cleanStaleWebpackAssets: false,
-    }),
     new StylelintWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'stories.css',
