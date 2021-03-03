@@ -1029,7 +1029,6 @@ function manageQuery() {
   if (slide && slide[1] < 12 && slide[1] > 0) {
     neededDataIndex = slide[1] - 1;
   } else {
-    console.info('Номер слайда указан неверно. Слайд номер 1 показывается по умолчанию');
     neededDataIndex = 0;
   }
 
@@ -1296,9 +1295,7 @@ function initChartSlide() {
 
 
 
-window.onload = () => {
-  manageQuery();
-};
+manageQuery();
 
 // This is needed for executing js after slide loading
 window.addEventListener('message', (event) => {
