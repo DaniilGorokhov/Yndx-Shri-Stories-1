@@ -1,22 +1,44 @@
-@import "global-vars";
 @import "fonts";
+@import "vars";
 
-$example: 20px;
+@import "slides/leaders";
+@import "slides/vote";
+@import "slides/chart";
+@import "slides/diagram";
+@import "slides/activity";
 
 :root {
-    --main-color: rgb(182, 227, 245);
-    font-family: "Roboto";
+    box-sizing: border-box;
+    // adaptation below
+    font-size: 2em;
 }
 
 body {
-    margin: $example;
-    background: var(--main-color);
+    background: radial-gradient(70.24% 70.24% at 49.87% 29.76%, rgba(18, 12, 1, 0.9) 0%, #000 100%);
+    min-height: 100vh;
+    min-width: 100%;
+    margin: 0;
+    text-size-adjust: none;
 }
 
-@for $i from 1 through 12 {
-    .example#{$i} {
-        width: 128px;
-        height: 128px;
-        background-image: url($images-path + $i + ".png");
+body.theme_light {
+    background: #fff;
+}
+
+@media (max-width: 1919px) {
+    :root {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 320px), (max-height: 320px) {
+    :root {
+        font-size: 0.85em;
     }
 }

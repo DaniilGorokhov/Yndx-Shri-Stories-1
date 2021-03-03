@@ -1,0 +1,11 @@
+.leader-board__relative-place {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    flex-flow: column nowrap;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        display: none;
+    }
+}

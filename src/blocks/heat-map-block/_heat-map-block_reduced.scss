@@ -1,0 +1,12 @@
+.heat-map-block.heat-map-block_reduced {
+    display: none;
+    padding: 0 1.5rem 2.5vh;
+    width: 64vw;
+    height: 30vh;
+    max-height: 16vw;
+    grid-template-rows: repeat(7, 1fr);
+
+    @media (min-aspect-ratio: 1 / 1) {
+        display: grid;
+    }
+}

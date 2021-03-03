@@ -1,5 +1,19 @@
-import "./scss/main.scss";
+import './scss/main.scss';
+import manageQuery from './js/queryManagement';
 
-import data from "./assets/data/data.json";
+import initVoteSlide from './js/vote/vote';
 
-console.log(data);
+import initChartSlide from './js/chart/chart';
+
+window.onload = () => {
+  manageQuery();
+};
+
+// This is needed for executing js after slide loading
+window.addEventListener('message', (event) => {
+  const possibleMessages = ['slideLoaded'];
+  if (!possibleMessages.includes(event.data)) return;
+
+  initVoteSlide();
+  initChartSlide();
+});

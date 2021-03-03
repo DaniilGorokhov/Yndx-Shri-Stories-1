@@ -1,0 +1,15 @@
+.chart-block {
+    height: 64vh;
+    overflow-x: hidden;
+    justify-content: flex-end;
+    display: flex;
+    flex-flow: row nowrap;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        height: 45vh;
+        justify-content: center;
+        min-width: 70vw;
+        padding: 0 15vw;
+        cursor: grab;
+    }
+}

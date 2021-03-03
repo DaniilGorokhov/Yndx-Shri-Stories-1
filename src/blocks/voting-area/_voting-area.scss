@@ -1,0 +1,26 @@
+.voting-area {
+    padding: 0 1.5rem;
+    display: grid;
+    height: 100%;
+    grid-template-areas:
+        "card1 slider-up card3"
+        "card1 card2 card3"
+        "card4 card2 card6"
+        "card4 card5 card6"
+        "card7 card5 card8"
+        "card7 slider-down card8";
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+
+    @media (min-aspect-ratio: 1 / 1) {
+        padding: 0;
+        grid-template-areas:
+            ". card2 sliders card3 ."
+            "card1 card2 sliders card3 card4"
+            "card1 card5 sliders card6 card4"
+            ". card5 sliders card6 .";
+        grid-template-columns: repeat(5, min-content);
+        grid-template-rows: repeat(4, 1fr);
+        justify-content: space-evenly;
+    }
+}

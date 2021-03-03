@@ -1,0 +1,8 @@
+.heat-map-description.heat-map-description_reduced {
+    display: none;
+    grid-template-columns: repeat(5, min-content);
+
+    @media (min-aspect-ratio: 1 / 1) {
+        display: grid;
+    }
+}

@@ -1,0 +1,10 @@
+.divider.divider_card-divider {
+    opacity: unset;
+    width: 60%;
+    height: 0.0625rem;
+    margin: 0.5rem auto 0.375rem;
+}
+
+body.theme_light .divider.divider_card-divider {
+    background-color: var(--black);
+}

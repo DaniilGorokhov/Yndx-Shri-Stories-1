@@ -1,0 +1,46 @@
+@import "../../blocks/slide/slide";
+@import "../../blocks/slide/slide_horizontal-align";
+
+
+@import "../../blocks/slide-description/slide-description";
+
+@import "../../blocks/slide-description/__headline/slide-description__headline";
+
+@import "../../blocks/slide-description/__caption/slide-description__caption";
+
+
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_vertical-align";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_wrap";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_flex";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_height";
+
+
+@import "../../blocks/diagram-block/diagram-block";
+
+@import "../../blocks/diagram-block/__description/diagram-block__description";
+
+@import "../../blocks/diagram-block/__description-title/diagram-block__description-title";
+
+@import "../../blocks/diagram-block/__description-caption/diagram-block__description-caption";
+
+@import "../../blocks/diagram-block/__body/diagram-block__body";
+@import "../../blocks/diagram-block/__body/diagram-block__body_light";
+
+
+@import "../../blocks/diagram-categories/diagram-categories";
+
+
+@import "../../blocks/diagram-categories-item/diagram-categories-item";
+
+@import "../../blocks/diagram-categories-item/__title/diagram-categories-item__title";
+
+@import "../../blocks/diagram-categories-item/__marker/diagram-categories-item__marker";
+@import "../../blocks/diagram-categories-item/__marker/diagram-categories-item__marker_color";
+
+@import "../../blocks/diagram-categories-item/__difference/diagram-categories-item__difference";
+
+@import "../../blocks/diagram-categories-item/__difference-item/diagram-categories-item__difference-item";
+
+@import "../../blocks/divider/divider";
+@import "../../blocks/divider/divider_margin-vertical";

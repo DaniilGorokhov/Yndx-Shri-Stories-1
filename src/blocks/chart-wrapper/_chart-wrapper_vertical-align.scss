@@ -1,0 +1,9 @@
+.chart-wrapper.chart-wrapper_vertical-align_end {
+    align-items: flex-end;
+}
+
+.chart-wrapper.chart-wrapper_vertical-align_horiz-center {
+    @media (min-aspect-ratio: 1 / 1) {
+        align-content: center;
+    }
+}

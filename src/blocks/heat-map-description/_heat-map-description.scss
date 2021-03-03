@@ -1,0 +1,14 @@
+.heat-map-description {
+    padding: 0 1.5rem 1.5rem;
+    width: calc(100% - 3rem);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 0.5rem;
+    justify-content: center;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        display: none;
+        padding-top: 2rem;
+        padding-bottom: 0;
+    }
+}

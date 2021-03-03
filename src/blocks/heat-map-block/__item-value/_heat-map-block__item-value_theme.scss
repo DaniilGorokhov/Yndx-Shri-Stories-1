@@ -1,0 +1,11 @@
+body.theme_light .heat-map-block__item-value.heat-map-block__item-value_theme_dark {
+    display: none;
+}
+
+.heat-map-block__item-value.heat-map-block__item-value_theme_light {
+    display: none;
+}
+
+body.theme_light .heat-map-block__item-value.heat-map-block__item-value_theme_light {
+    display: unset;
+}

@@ -1,0 +1,5 @@
+@for $i from 1 through 2 {
+    .leader-board__item.leader-board__item_z-index_#{$i} {
+        z-index: $i;
+    }
+}

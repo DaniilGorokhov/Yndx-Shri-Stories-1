@@ -1,0 +1,132 @@
+<main class="slide" data-slide="vote">
+    <div class="slide-description">
+        <p class="slide-description__headline">
+            <%= data.title %>
+        </p>
+        <p class="slide-description__caption">
+            <%= data.subtitle %>
+        </p>
+    </div>
+
+    <div class="voting-area">
+        <%
+            let needOffset = data.offset ? true : false;
+            let offset = 0, displayedCards = 0, i;
+            let firstDisplayedUserId;
+            let horizontalSlideOffset, verticalSlideOffset;
+        %>
+        <% for (i = 0; i < data.users.length; i++) { %>
+        <%
+            let currentUser = data.users[i];
+            if (displayedCards === 8) {
+                break;
+            } else if (needOffset && currentUser && data.offset !== currentUser.id) {
+                offset++;
+                continue;
+            } else {
+                needOffset = false;
+            }
+            displayedCards++;
+        %>
+            <div class="voting-area__card-item <%= `voting-area__card-item_position_${i + 1 - offset}` %>">
+                <div
+                    class="people-card people-card_interactions
+                    <%= currentUser.id === data.selectedUserId ? 'people-card_selected' : '' %>"
+                    <% if (displayedCards === 1) firstDisplayedUserId = currentUser.id; %>
+                    <% if (displayedCards === 6 && data.users[i + 1]) horizontalSlideOffset = data.users[i + 1].id; %>
+                    <% if (displayedCards === 8 && data.users[i + 1]) verticalSlideOffset = data.users[i + 1].id; %>
+                    data-action="update"
+                    data-params="<%= JSON.stringify({
+                        alias: 'leaders',
+                        data: {
+                            selectedUserId: currentUser.id,
+                        },
+                    }) %>"
+                >
+                    <div class="people-card__img-wrapper">
+                        <div
+                            class="people-card__emoji
+                            <%= currentUser.id === data.selectedUserId ? '' : 'people-card__emoji_hidden' %>"
+                        >
+                            👍
+                        </div>
+
+                        <img
+                            src="<%= require(`../assets/images/${currentUser.avatar}`) %>"
+                            alt="People card image"
+                            class="people-card__img"
+                        >
+                    </div>
+                    
+                    <div class="people-card__text-wrapper">
+                        <p class="people-card__body">
+                            <%= currentUser.name %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        
+        <% for (let j = 0; j < 2; j++) { %>
+            <% if (j === 1) { %>
+                <div class="voting-area__sliders-wrapper">
+            <% } %>
+            <div
+                class="voting-area__slider
+                <%= firstDisplayedUserId === data.users[0].id ? 'voting-area__slider_disabled' : '' %>"
+                <% if ( firstDisplayedUserId !== data.users[0].id ) { %>
+                    <%
+                        const firstDisplayedUserIndex = data.users.findIndex(
+                            (item) => item.id === firstDisplayedUserId,
+                        );
+                        const tmp = firstDisplayedUserIndex - 7 > 0 ? firstDisplayedUserIndex - 7 : 0;
+                        const slideUpOffset = data.users[tmp].id;
+                        const paramsObj = {
+                            alias: 'vote',
+                            data: {
+                                offset: slideUpOffset,
+                            },
+                        };
+                    %>
+                    data-action="update"
+                    data-params="<%= JSON.stringify(paramsObj) %>"
+                <% } %>
+            >
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="#slider" />
+                </svg>
+            </div>
+
+            <div
+                class="voting-area__slider voting-area__slider_revert
+                <%= i === data.users.length && (j === 0
+                    || j === 1 && displayedCards <= 6) ? 'voting-area__slider_disabled' : '' %>"
+                <% if (i !== data.users.length && (j === 0 || j === 1 && displayedCards >= 6)) { %>
+                    <%
+                        const paramsObj = {
+                            alias: 'vote',
+                            data: {
+                                offset: j === 0 ? verticalSlideOffset : horizontalSlideOffset,
+                            },
+                        };
+                    %>
+                    data-action="update"
+                    data-params="<%= JSON.stringify(paramsObj) %>"
+                <% } %>
+            >
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use xlink:href="#slider" />
+                </svg>
+            </div>
+            <% if (j === 1) { %>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+
+    <svg style="display: none;">
+        <symbol id="slider">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62ZM32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64ZM59 32C59 46.9117 46.9117 59 32 59C17.0883 59 5 46.9117 5 32C5 17.0883 17.0883 5 32 5C46.9117 5 59 17.0883 59 32ZM25.0607 27.9393C24.4749 27.3536 23.5251 27.3536 22.9393 27.9393C22.3536 28.5251 22.3536 29.4749 22.9393 30.0607L30.9393 38.0607C31.5251 38.6464 32.4749 38.6464 33.0607 38.0607L41.0607 30.0607C41.6464 29.4749 41.6464 28.5251 41.0607 27.9393C40.4749 27.3536 39.5251 27.3536 38.9393 27.9393L32 34.8787L25.0607 27.9393Z" fill="currentColor"/>
+        </symbol>
+    </svg>
+</main>

@@ -1,0 +1,42 @@
+@import "../../blocks/slide/slide";
+@import "../../blocks/slide/slide_horizontal-align";
+
+
+@import "../../blocks/slide-description/slide-description";
+
+@import "../../blocks/slide-description/__headline/slide-description__headline";
+
+@import "../../blocks/slide-description/__caption/slide-description__caption";
+
+
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_direction";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_flex";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_horizontal-align";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_vertical-align";
+@import "../../blocks/slide-body-wrapper/slide-body-wrapper_height";
+
+
+@import "../../blocks/heat-map-block/heat-map-block";
+@import "../../blocks/heat-map-block/heat-map-block_reduced";
+
+@import "../../blocks/heat-map-block/__item/heat-map-block__item";
+@import "../../blocks/heat-map-block/__item/heat-map-block__item_placeholder";
+
+@import "../../blocks/heat-map-block/__line/heat-map-block__line";
+@import "../../blocks/heat-map-block/__line/heat-map-block__line_margin";
+
+@import "../../blocks/heat-map-block/__item-value/heat-map-block__item-value";
+@import "../../blocks/heat-map-block/__item-value/heat-map-block__item-value_theme";
+
+
+@import "../../blocks/heat-map-description/heat-map-description";
+@import "../../blocks/heat-map-description/heat-map-description_reduced";
+
+@import "../../blocks/heat-map-description/__item/heat-map-description__item";
+
+@import "../../blocks/heat-map-description/__indicator/heat-map-description__indicator";
+@import "../../blocks/heat-map-description/__indicator/heat-map-description__indicator_color";
+@import "../../blocks/heat-map-description/__indicator/heat-map-description__indicator_special";
+
+@import "../../blocks/heat-map-description/__title/heat-map-description__title";

@@ -1,0 +1,10 @@
+.divider.divider_horizontal-revert {
+    @media (min-aspect-ratio: 1 / 1) {
+        height: 2.5rem;
+        width: 0.125rem;
+
+        &.divider_margin-vertical_1 {
+            margin: 0 1rem;
+        }
+    }
+}

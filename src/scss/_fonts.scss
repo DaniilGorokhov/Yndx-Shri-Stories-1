@@ -1,4 +1,5 @@
-@import "global-vars";
+$assets-path: "../assets/";
+$fonts-path: $assets-path + "fonts/";
 
 @mixin font-face($family, $weight, $url, $type) {
     @font-face {
