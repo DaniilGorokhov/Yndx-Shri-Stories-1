@@ -25,6 +25,12 @@
     $bar-radial-secondary-shadow: 0.125rem 0.125rem 1rem 0 rgba(#676767, $alpha: 0.6) inset, -0.0625rem 0.0625rem 0.0625rem 0 rgba(#fff, $alpha: 0.2) inset;
     --bar-radial-primary-shadow: #{$bar-radial-primary-shadow};
     --bar-radial-secondary-shadow: #{$bar-radial-secondary-shadow};
+
+    --bar-chart-primary: radial-gradient(81.14% 100% at 50% 0%, #ffa300 0%, #2d1c00 100%);
+    --bar-chart-secondary: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%), radial-gradient(149.08% 93.3% at 38.75% 72.1%, #000 0%, #231900 0.01%, #4d4d4d 100%);
+
+    --bar-chart-primary-shadow: inset -0.0625rem 0.0625rem 0.0625rem rgba(255, 255, 255, 0.4), inset 0 0.375rem 0.9375rem rgba(255, 162, 0, 0.5);
+    --bar-chart-secondary-shadow: inset -0.0625rem 0.0625rem 0.0625rem rgba(255, 255, 255, 0.2), inset 0.125rem 0.125rem 1rem rgba(103, 103, 103, 0.6);
 }
 
 body.theme_light {
@@ -43,4 +49,10 @@ body.theme_light {
     $bar-radial-secondary-shadow: 0 0 1.25rem 0 rgba(#cfcfcf, $alpha: 0.5) inset, -0.0625rem 0.0625rem 0.0625rem 0 rgba(#fff, $alpha: 0.5) inset;
     --bar-radial-primary-shadow: #{$bar-radial-primary-shadow};
     --bar-radial-secondary-shadow: #{$bar-radial-secondary-shadow};
+
+    --bar-chart-primary: linear-gradient(180deg, #fff2d1 0.82%, #ffd66c 100%);
+    --bar-chart-secondary: linear-gradient(180deg, rgba(244, 244, 244, 0.9) 0.82%, #e9e9e9 100%, rgba(234, 234, 234, 0) 100%);
+
+    --bar-chart-primary-shadow: inset -0.0625rem 0.0625rem 0.0625rem rgba(255, 255, 255, 0.5), inset 0 0 1.25rem rgba(255, 176, 57, 0.8);
+    --bar-chart-secondary-shadow: inset -0.0625rem 0.0625rem 0.0625rem rgba(255, 255, 255, 0.5), inset 0 0 1.25rem rgba(207, 207, 207, 0.5);
 }

@@ -1,3 +1,5 @@
+import alignChartBlock from './alignChartBlock';
+
 let startPositionX;
 let initialMargin;
 
@@ -28,14 +30,18 @@ function touchMove(event) {
     currentPositionX = event.touches[0].clientX;
   }
 
-  const differenceX = -(startPositionX - currentPositionX);
+  const differenceX = currentPositionX - startPositionX;
   const marginMultiplier = differenceX / clientWidth;
   let marginDelta = initialMargin * marginMultiplier;
-  if (aspectRatio >= 1) marginDelta = -Math.abs(marginDelta);
+  if (aspectRatio >= 1 && clientWidth / 2 < startPositionX) {
+    marginDelta = -marginDelta;
+  }
 
   const newMargin = initialMargin - marginDelta;
 
-  if (newMargin > 0) {
+  let minMargin = window.getComputedStyle(document.documentElement).getPropertyValue('font-size');
+  minMargin = 0.5 * parseFloat(minMargin);
+  if (newMargin > minMargin) {
     const chartBlockItems = document.querySelectorAll('.chart-block__item');
     Array.prototype.forEach.call(
       chartBlockItems,
@@ -62,6 +68,8 @@ function touchEnd(event) {
       'transition: margin-right 0.15s ease-in-out',
     );
   });
+
+  chartBlockItems[0].ontransitionend = alignChartBlock;
 }
 
 export default function initChartSlide() {
@@ -77,4 +85,6 @@ export default function initChartSlide() {
 
   chartBlock.addEventListener('touchend', touchEnd);
   chartBlock.addEventListener('mouseup', touchEnd);
+
+  alignChartBlock();
 }

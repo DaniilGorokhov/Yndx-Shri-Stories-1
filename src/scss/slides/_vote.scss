@@ -11,14 +11,14 @@
 
 @import "../../blocks/voting-area/voting-area";
 
-@import "../../blocks/voting-area/__card-item/voting-area__card-item";
-@import "../../blocks/voting-area/__card-item/voting-area__card-item_position";
+@import "../../blocks/voting-area/__column/voting-area__column";
+
+@import "../../blocks/voting-area/__item/voting-area__item";
+@import "../../blocks/voting-area/__item/voting-area__item_visibility";
 
 @import "../../blocks/voting-area/__slider/voting-area__slider";
 @import "../../blocks/voting-area/__slider/voting-area__slider_revert";
 @import "../../blocks/voting-area/__slider/voting-area__slider_disabled";
-
-@import "../../blocks/voting-area/__sliders-wrapper/voting-area__sliders-wrapper";
 
 
 @import "../../blocks/people-card/people-card";

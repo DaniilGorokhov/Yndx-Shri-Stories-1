@@ -1,6 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 
@@ -68,11 +67,5 @@ module.exports = {
     }),
     new EslintWebpackPlugin(),
   ],
-  optimization: {
-    minimize: true,
-    minimizer: [
-      new CssMinimizerWebpackPlugin(),
-    ],
-  },
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: 'development',
 };

@@ -2,7 +2,7 @@
     flex-flow: row nowrap;
     width: unset;
     justify-content: flex-start;
-    min-width: 35vw;
+    min-width: calc(35.4790419vw - 17px);
 }
 
 .people-card.people-card_direction_row .people-card__img-wrapper {
@@ -21,5 +21,5 @@
 
 .people-card.people-card_direction_row .people-card__caption {
     text-align: unset;
-    padding: 0.25rem 0 0;
+    padding: 0.25rem 0 0.0625rem;
 }

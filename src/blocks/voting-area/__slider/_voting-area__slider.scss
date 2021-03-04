@@ -1,15 +1,13 @@
 .voting-area__slider {
-    place-self: center;
-    grid-area: slider-up;
     transform: rotate(180deg);
-    width: 17vw;
+    width: 17.0212765vw;
     color: var(--white);
     transition: color 0.15s ease-in-out;
     display: flex;
     cursor: pointer;
 
     @media (min-aspect-ratio: 1 / 1) {
-        width: 9vw;
+        width: 9.58083832vw;
         display: none;
     }
 }

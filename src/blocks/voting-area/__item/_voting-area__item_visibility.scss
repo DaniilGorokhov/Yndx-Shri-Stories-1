@@ -1,0 +1,15 @@
+.voting-area__item.voting-area__item_visibility_horizontal {
+    display: none;
+    margin: 0;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        display: flex;
+    }
+}
+
+.voting-area__item.voting-area__item_visibility_vertical {
+    @media (min-aspect-ratio: 1 / 1) {
+        display: none;
+        margin: 0;
+    }
+}

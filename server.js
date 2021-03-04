@@ -1,4 +1,3 @@
-// const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const WebpackDevMiddleware = require('webpack-dev-middleware');
@@ -26,12 +25,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-  // res.sendFile(
-  // path.resolve(__dirname, './src/index.html'),
-  // );
-
-  // Query params may be gained via req.query.<query_param_name>
-  res.render('index', { theme: req.query.theme });
+  res.render('index', { theme: req.query.theme || 'dark' });
 });
 
 app.listen(port);

@@ -9,7 +9,68 @@
     </div>
 
     <div class="voting-area">
-        <%
+        <% for (let columnId = 0; columnId < data.columns.length; columnId += 1) { %>
+            <div class="voting-area__column">
+                <% for (let columnItemId = 0; columnItemId < data.columns[columnId].length; columnItemId += 1) { %>
+                    <% let currentColumnItem = data.columns[columnId][columnItemId]; %>
+                    <% if (currentColumnItem.data && currentColumnItem.data.type === 'user') { %>
+                        <% let currentUser = currentColumnItem.data; %>
+                        <div
+                            class="people-card people-card_interactions voting-area__item
+                            <%= currentColumnItem.visibility !== 'both' ?
+                                `voting-area__item_visibility_${currentColumnItem.visibility}` : '' %>
+                            <%= currentUser.selected ? 'people-card_selected' : '' %>"
+                            data-action="update"
+                            data-params="<%= JSON.stringify({
+                                alias: 'leaders',
+                                data: {
+                                    selectedUserId: currentUser.id,
+                                },
+                            }) %>"
+                        >
+                            <div class="people-card__img-wrapper">
+                                <div
+                                    class="people-card__emoji
+                                    <%= !currentUser.selected ? 'people-card__emoji_hidden' : '' %>"
+                                >
+                                    👍
+                                </div>
+
+                                <img
+                                    src="<%= require(`../assets/images/${currentUser.avatar}`) %>"
+                                    alt="People card image"
+                                    class="people-card__img"
+                                >
+                            </div>
+                            
+                            <div class="people-card__text-wrapper">
+                                <p class="people-card__body">
+                                    <%= currentUser.name %>
+                                </p>
+                            </div>
+                        </div>
+                    <% } else if (currentColumnItem.data && currentColumnItem.data.type.match(/^slider/)) { %>
+                        <div
+                            class="voting-area__slider voting-area__item
+                            <%= currentColumnItem.visibility !== 'both' ?
+                                `voting-area__item_visibility_${currentColumnItem.visibility}` : '' %>
+                            <%= !currentColumnItem.data.active ? 'voting-area__slider_disabled' : '' %>
+                            <%= currentColumnItem.data.type === 'slider-down' ? 'voting-area__slider_revert' : '' %>"
+                            <% if (currentColumnItem.data.active) { %>
+                                data-update="update"
+                                data-params="<%= JSON.stringify(currentColumnItem.data.params) %>"
+                            <% } %>
+                        >
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#slider" />
+                            </svg>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        <% } %>
+
+        <!-- <%
             let needOffset = data.offset ? true : false;
             let offset = 0, displayedCards = 0, i;
             let firstDisplayedUserId;
@@ -121,7 +182,7 @@
             <% if (j === 1) { %>
                 </div>
             <% } %>
-        <% } %>
+        <% } %> -->
     </div>
 
     <svg style="display: none;">

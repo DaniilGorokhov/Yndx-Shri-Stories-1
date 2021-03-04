@@ -1,5 +1,3 @@
-import selectUser from './selectUser';
-
 let startPositionY;
 let initialVotingAreaHeight;
 let minVerticalHeight;
@@ -7,7 +5,7 @@ let minHorizontalHeight;
 let scrolling = true;
 let newHeight;
 
-function touchStart(event) {
+export function touchStart(event) {
   const peopleCardHeight = document.querySelector('.people-card').clientHeight;
   minHorizontalHeight = peopleCardHeight * 2;
   minVerticalHeight = peopleCardHeight * 3;
@@ -26,7 +24,7 @@ function touchStart(event) {
   }
 }
 
-function touchMove(event) {
+export function touchMove(event) {
   const clientWidth = window.innerWidth;
   const clientHeight = window.innerHeight;
   const aspectRatio = clientWidth / clientHeight;
@@ -74,7 +72,7 @@ function touchMove(event) {
   slide.setAttribute('style', 'overflow: hidden');
 }
 
-function touchEnd() {
+export function touchEnd() {
   scrolling = true;
   newHeight = null;
   startPositionY = null;
@@ -87,34 +85,11 @@ function touchEnd() {
   }, 200);
 }
 
-function voteSlideResize() {
+export function voteSlideResize() {
   const main = document.querySelector('main');
   if (!main || main.dataset.slide !== 'vote') return;
 
   initialVotingAreaHeight = null;
   const votingArea = document.querySelector('.voting-area');
   votingArea.removeAttribute('style');
-}
-
-export default function initVoteSlide() {
-  const main = document.querySelector('main');
-  if (!main || main.dataset.slide !== 'vote') return;
-
-  const peopleCards = document.querySelectorAll('.people-card');
-  for (let i = 0; i < peopleCards.length; i += 1) {
-    peopleCards[i].addEventListener('click', selectUser);
-  }
-
-  window.addEventListener('touchstart', touchStart);
-  window.addEventListener('mousedown', touchStart);
-
-  window.addEventListener('touchmove', touchMove);
-  window.addEventListener('mousemove', touchMove);
-
-  window.addEventListener('touchend', touchEnd);
-  window.addEventListener('mouseup', touchEnd);
-
-  window.onresize = () => {
-    voteSlideResize();
-  };
 }

@@ -164,10 +164,14 @@ displayedItems++;
     ; __append(escapeFn( data.values[i].active ? 'chart-block__item-value_active' : '' ))
     ; __append("\">\n")
     ; __append(escapeFn( data.values[i].value !== 0 ? data.values[i].value : '' ))
-    ; __append("\n</p>\n<div class=\"chart-block__item-bar\n")
+    ; __append("\n</p>\n<div class=\"chart-block__item-bar chart-block__item-bar_visible_vert\n")
     ; __append(escapeFn( data.values[i].active ? 'chart-block__item-bar_active' : '' ))
     ; __append("\"\n")
-    ; __append( `style="height: ${70 * (data.values[i].value / maxValue)}%"` )
+    ; __append( `style="height: ${63.15625 * (data.values[i].value / maxValue)}%"` )
+    ; __append("\n></div>\n<div class=\"chart-block__item-bar chart-block__item-bar_visible_horiz\n")
+    ; __append(escapeFn( data.values[i].active ? 'chart-block__item-bar_active' : '' ))
+    ; __append("\"\n")
+    ; __append( `style="height: ${62.84946236 * (data.values[i].value / maxValue)}%"` )
     ; __append("\n></div>\n<p class=\"chart-block__item-title\">\n")
     ; __append(escapeFn( data.values[i].title ))
     ; __append("\n</p>\n</div>\n")
@@ -236,37 +240,36 @@ const valuesSum = parseFloat(data.totalText);
 const degUnit = valuesSum / CIRCLE_LENGTH;
 let sumBefore = 0;
 const diagramData = values.map((item) => {
-let result = [item / degUnit, sumBefore += 1.5 * degUnit];
+let result = [item / degUnit, sumBefore += degUnit];
 sumBefore += item / degUnit;
 return result;
 });
-const darkColors = ['#ee9700', '#966000', '#6b6b6b', '#515151'];
-const lightColors = ['#ffbe4c', '#ffdc9a', '#dcdcdc', '#bdbdbd'];
-const lightOpacity = ['0.8', '0.4', '0.69', '0.69'];
 
     ; __append("\n<svg class=\"diagram-block__body\" viewBox=\"0 0 100 100\">\n")
     ;  for (let i = 0; i < 4; i++) { 
-    ; __append("\n<circle cx=\"50\" cy=\"50\" r=\"42.5\" stroke=\"")
-    ; __append(escapeFn( darkColors[i] ))
-    ; __append("\" stroke-dasharray=\"")
+    ; __append("\n<circle cx=\"50\" cy=\"50\" r=\"42.5\" stroke=\"url('#radial-dark-")
+    ; __append(escapeFn( i ))
+    ; __append("')\" filter=\"url(#filter")
+    ; __append(escapeFn( i ))
+    ; __append("_dii)\" stroke-dasharray=\"267\" stroke-dashoffset=\"-")
+    ; __append(escapeFn( diagramData[i][1] ))
+    ; __append("\" stroke-width=\"15\" fill=\"url('#radial-dark-")
+    ; __append(escapeFn( i ))
+    ; __append("')\"/>\n")
+    ;  } 
+    ; __append("\n<defs>\n<g filter=\"url(#filter0_dii)\">\n<path d=\"M166.6 37.8101C168.206 34.9119 167.164 31.2494 164.209 29.75C141.24 18.0952 115.821 12.0012 90.0078 12C64.1948 11.9988 38.7751 18.0903 15.805 29.743C12.8498 31.2421 11.8069 34.9045 13.4131 37.8029L31.445 70.3404C33.0512 73.2388 36.6968 74.271 39.6751 72.8184C55.3277 65.184 72.5379 61.1992 90.0054 61.2C107.473 61.2008 124.683 65.1873 140.335 72.8231C143.313 74.276 146.958 73.2442 148.565 70.3459L166.6 37.8101Z\" fill=\"url(#paint0_radial)\" fill-opacity=\"0.8\"/>\n</g>\n<defs>\n<filter id=\"filter0_dii\" x=\"0.660767\" y=\"0\" width=\"178.692\" height=\"185.4767\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\"/>\n<feMorphology radius=\"8\" operator=\"erode\" in=\"SourceAlpha\" result=\"effect1_dropShadow\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.972549 0 0 0 0 0.618715 0 0 0 0 0 0 0 0 0.2 0\"/>\n<feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow\"/>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow\" result=\"shape\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 0.636666 0 0 0 0 0 0 0 0 0.9 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect2_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"0.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect2_innerShadow\" result=\"effect3_innerShadow\"/>\n</filter>\n<radialGradient id=\"radial-dark-0\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(89.4859 176.514) rotate(90) scale(163.486)\">\n<stop offset=\"0.71875\" stop-color=\"#FFA300\"/>\n<stop offset=\"1\" stop-color=\"#5B3A00\"/>\n</radialGradient>\n</defs>\n</defs></svg>\n<svg class=\"diagram-block__body diagram-block__body_light\" viewBox=\"0 0 100 100\">\n")
+    ;  for (let i = 0; i < 4; i++) { 
+    ; __append("\n<circle cx=\"50\" cy=\"50\" r=\"42.5\" stroke=\"url('#radial-light-")
+    ; __append(escapeFn( i ))
+    ; __append("')\" filter=\"url(#filter")
+    ; __append(escapeFn( i ))
+    ; __append("_ii)\" stroke-dasharray=\"")
     ; __append(escapeFn( diagramData[i][0] ))
     ; __append(" 267\" stroke-dashoffset=\"-")
     ; __append(escapeFn( diagramData[i][1] ))
     ; __append("\" stroke-width=\"15\" fill=\"transparent\"/>\n")
     ;  } 
-    ; __append("\n<defs>\n<filter id=\"filter0_dii\" x=\"0.660767\" y=\"0\" width=\"178.692\" height=\"185.4767\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\"/>\n<feMorphology radius=\"8\" operator=\"erode\" in=\"SourceAlpha\" result=\"effect1_dropShadow\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.972549 0 0 0 0 0.618715 0 0 0 0 0 0 0 0 0.2 0\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"6.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 0.636666 0 0 0 0 0 0 0 0 0.9 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect2_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"0.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect2_innerShadow\" result=\"effect3_innerShadow\"/>\n</filter>\n<filter id=\"filter1_dii\" x=\"0.523071\" y=\"0.578003\" width=\"99.477\" height=\"131.58\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\"/>\n<feMorphology radius=\"8\" operator=\"erode\" in=\"SourceAlpha\" result=\"effect1_dropShadow\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.575 0 0 0 0 0.365803 0 0 0 0 0 0 0 0 0.2 0\"/>\n<feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"6.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.791667 0 0 0 0 0.504028 0 0 0 0 0 0 0 0 0.9 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect2_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"0.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect2_innerShadow\" result=\"effect3_innerShadow\"/>\n</filter>\n<filter id=\"filter2_dii\" x=\"0.230835\" y=\"0.356323\" width=\"195.936\" height=\"137.644\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\"/>\n<feMorphology radius=\"8\" operator=\"erode\" in=\"SourceAlpha\" result=\"effect1_dropShadow\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0\"/>\n<feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow\"/>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow\" result=\"shape\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.545833 0 0 0 0 0.545833 0 0 0 0 0.545833 0 0 0 0.9 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect2_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"0.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect2_innerShadow\" result=\"effect3_innerShadow\"/>\n</filter>\n<filter id=\"filter3_dii\" x=\"0\" y=\"0.215454\" width=\"151.715\" height=\"228.518\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\"/>\n<feMorphology radius=\"8\" operator=\"erode\" in=\"SourceAlpha\" result=\"effect1_dropShadow\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.375 0 0 0 0 0.375 0 0 0 0 0.375 0 0 0 0.2 0\"/>\n<feBlend mode=\"normal\" in2=\"BackgroundImageFix\" result=\"effect1_dropShadow\"/>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"effect1_dropShadow\" result=\"shape\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"10\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.15 0 0 0 0 0.15 0 0 0 0 0.15 0 0 0 0.9 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect2_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"0.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect2_innerShadow\" result=\"effect3_innerShadow\"/>\n</filter>\n<radialGradient id=\"radial-dark-0\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(89.4859 176.514) rotate(90) scale(163.486)\">\n<stop offset=\"0.71875\" stop-color=\"#FFA300\"/>\n<stop offset=\"1\" stop-color=\"#5B3A00\"/>\n</radialGradient>\n<radialGradient id=\"radial-dark-1\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(-47.5141 152.514) rotate(90) scale(163.486)\">\n<stop offset=\"0.729167\" stop-color=\"#633F00\"/>\n<stop offset=\"1\" stop-color=\"#0F0900\"/>\n</radialGradient>\n<radialGradient id=\"radial-dark-2\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(85.4859 5.51411) rotate(90) scale(163.486)\">\n<stop offset=\"0.71875\" stop-color=\"#9B9B9B\"/>\n<stop offset=\"1\" stop-color=\"#382900\"/>\n</radialGradient>\n<radialGradient id=\"radial-dark-3\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(175.486 152.514) rotate(90) scale(163.486)\">\n<stop offset=\"0.71875\" stop-color=\"#4D4D4D\"/>\n<stop offset=\"1\" stop-color=\"#382900\"/>\n</radialGradient>\n</defs>\n</svg>\n<svg class=\"diagram-block__body diagram-block__body_light\" viewBox=\"0 0 100 100\">\n")
-    ;  for (let i = 0; i < 4; i++) { 
-    ; __append("\n<circle cx=\"50\" cy=\"50\" r=\"42.5\" stroke=\"")
-    ; __append(escapeFn( lightColors[i] ))
-    ; __append("\" stroke-dasharray=\"")
-    ; __append(escapeFn( diagramData[i][0] ))
-    ; __append(" 267\" stroke-dashoffset=\"-")
-    ; __append(escapeFn( diagramData[i][1] ))
-    ; __append("\" stroke-width=\"15\" fill=\"transparent\" opacity=\"")
-    ; __append(escapeFn( lightOpacity[i] ))
-    ; __append("\"/>\n")
-    ;  } 
-    ; __append("\n<defs>\n<filter id=\"filter0_ii\" x=\"-0.339233\" y=\"0\" width=\"155.692\" height=\"162.4767\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"BackgroundImageFix\" result=\"shape\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"2.7\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 4 0 0 2.2 0 0 0 0 0.65 0 0 0 0 0.235 0 0 0 1.9 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect1_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"0.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 5 0 0 0 0 5 0 0 0 0 5 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect1_innerShadow\" result=\"effect2_innerShadow\"/>\n</filter>\n<filter id=\"filter1_ii\" x=\"-0.177551\" y=\"0.380035\" width=\"105.178\" height=\"147.413\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"BackgroundImageFix\" result=\"shape\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"2.7\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 10 0 0 1.2 0 0 0 0 0.75 0 0 0 0 0.25 0 0 0 2.2 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect1_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"0.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 5 0 0 0 0 5 0 0 0 0 5 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect1_innerShadow\" result=\"effect2_innerShadow\"/>\n</filter>\n<filter id=\"filter2_ii\" x=\"-0.42688\" y=\"0.491913\" width=\"237.656\" height=\"157.508\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"BackgroundImageFix\" result=\"shape\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"3.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.0125 0 0 0 0 0.0125 0 0 0 0 0.0125 0 0 0 0.6 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect1_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"200\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect1_innerShadow\" result=\"effect2_innerShadow\"/>\n</filter>\n<filter id=\"filter3_ii\" x=\"-1\" y=\"0.408447\" width=\"107.903\" height=\"282.412\" filterUnits=\"userSpaceOnUse\" color-interpolation-filters=\"sRGB\">\n<feFlood flood-opacity=\"0\" result=\"BackgroundImageFix\"/>\n<feBlend mode=\"normal\" in=\"SourceGraphic\" in2=\"BackgroundImageFix\" result=\"shape\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset/>\n<feGaussianBlur stdDeviation=\"6.5\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 0.0125 0 0 0 0 0.0125 0 0 0 0 0.0125 0 0 0 0.6 0\"/>\n<feBlend mode=\"normal\" in2=\"shape\" result=\"effect1_innerShadow\"/>\n<feColorMatrix in=\"SourceAlpha\" type=\"matrix\" values=\"0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0\" result=\"hardAlpha\"/>\n<feOffset dx=\"-1\" dy=\"1\"/>\n<feGaussianBlur stdDeviation=\"5000\"/>\n<feComposite in2=\"hardAlpha\" operator=\"arithmetic\" k2=\"-1\" k3=\"1\"/>\n<feColorMatrix type=\"matrix\" values=\"0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0\"/>\n<feBlend mode=\"normal\" in2=\"effect1_innerShadow\" result=\"effect2_innerShadow\"/>\n</filter>\n<radialGradient id=\"radial-light-0\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(77.4859 164.514) rotate(90) scale(163.486)\">\n<stop offset=\"0.8125\" stop-color=\"#FFB800\" stop-opacity=\"0.7\"/>\n<stop offset=\"1\" stop-color=\"#FFEF99\" stop-opacity=\"0.4\"/>\n</radialGradient>\n<radialGradient id=\"radial-light-1\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(-59.5141 140.514) rotate(90) scale(163.486)\">\n<stop offset=\"0.8125\" stop-color=\"#FFB800\" stop-opacity=\"0.4\"/>\n<stop offset=\"1\" stop-color=\"#FFEF99\" stop-opacity=\"0.2\"/>\n</radialGradient>\n<radialGradient id=\"radial-light-2\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(163.486 140.514) rotate(90) scale(163.486)\">\n<stop offset=\"0.828125\" stop-color=\"#BFBFBF\" stop-opacity=\"0.69\"/>\n<stop offset=\"0.921875\" stop-color=\"#E4E4E4\" stop-opacity=\"0.2\"/>\n</radialGradient>\n<radialGradient id=\"radial-light-3\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(73.4859 -6.48589) rotate(90) scale(163.486)\">\n<stop offset=\"0.828125\" stop-color=\"#A6A6A6\" stop-opacity=\"0.69\"/>\n<stop offset=\"0.921875\" stop-color=\"#CBCBCB\" stop-opacity=\"0.2\"/>\n</radialGradient>\n</defs>\n</svg>\n</div>\n<div class=\"diagram-categories\">\n")
+    ; __append("\n</svg>\n</div>\n<div class=\"diagram-categories\">\n")
     ;  for (let i = 0; i < data.categories.length; i++) { 
     ; __append("\n<div class=\"diagram-categories-item\">\n<div class=\"diagram-categories-item__title\">\n<div class=\"diagram-categories-item__marker ")
     ; __append(escapeFn( `diagram-categories-item__marker_color_${i + 1}` ))
@@ -443,38 +446,21 @@ function encode_char(c) {
     ; __append("\n</p>\n<p class=\"slide-description__caption\">\n")
     ; __append(escapeFn( data.subtitle ))
     ; __append("\n</p>\n</div>\n<div class=\"voting-area\">\n")
-    ; 
-let needOffset = data.offset ? true : false;
-let offset = 0, displayedCards = 0, i;
-let firstDisplayedUserId;
-let horizontalSlideOffset, verticalSlideOffset;
-
+    ;  for (let columnId = 0; columnId < data.columns.length; columnId += 1) { 
+    ; __append("\n<div class=\"voting-area__column\">\n")
+    ;  for (let columnItemId = 0; columnItemId < data.columns[columnId].length; columnItemId += 1) { 
     ; __append("\n")
-    ;  for (i = 0; i < data.users.length; i++) { 
+    ;  let currentColumnItem = data.columns[columnId][columnItemId]; 
     ; __append("\n")
-    ; 
-let currentUser = data.users[i];
-if (displayedCards === 8) {
-break;
-} else if (needOffset && currentUser && data.offset !== currentUser.id) {
-offset++;
-continue;
-} else {
-needOffset = false;
-}
-displayedCards++;
-
-    ; __append("\n<div class=\"voting-area__card-item ")
-    ; __append(escapeFn( `voting-area__card-item_position_${i + 1 - offset}` ))
-    ; __append("\">\n<div class=\"people-card people-card_interactions\n")
-    ; __append(escapeFn( currentUser.id === data.selectedUserId ? 'people-card_selected' : '' ))
-    ; __append("\"\n")
-    ;  if (displayedCards === 1) firstDisplayedUserId = currentUser.id; 
+    ;  if (currentColumnItem.data && currentColumnItem.data.type === 'user') { 
     ; __append("\n")
-    ;  if (displayedCards === 6 && data.users[i + 1]) horizontalSlideOffset = data.users[i + 1].id; 
+    ;  let currentUser = currentColumnItem.data; 
+    ; __append("\n<div class=\"people-card people-card_interactions voting-area__item\n")
+    ; __append(escapeFn( currentColumnItem.visibility !== 'both' ?
+`voting-area__item_visibility_${currentColumnItem.visibility}` : '' ))
     ; __append("\n")
-    ;  if (displayedCards === 8 && data.users[i + 1]) verticalSlideOffset = data.users[i + 1].id; 
-    ; __append("\ndata-action=\"update\" data-params=\"")
+    ; __append(escapeFn( currentUser.selected ? 'people-card_selected' : '' ))
+    ; __append("\" data-action=\"update\" data-params=\"")
     ; __append(escapeFn( JSON.stringify({
 alias: 'leaders',
 data: {
@@ -482,64 +468,31 @@ selectedUserId: currentUser.id,
 },
 }) ))
     ; __append("\">\n<div class=\"people-card__img-wrapper\">\n<div class=\"people-card__emoji\n")
-    ; __append(escapeFn( currentUser.id === data.selectedUserId ? '' : 'people-card__emoji_hidden' ))
+    ; __append(escapeFn( !currentUser.selected ? 'people-card__emoji_hidden' : '' ))
     ; __append("\">\n👍\n</div>\n<img src=\"")
     ; __append(escapeFn( __webpack_require__(990)(`./${currentUser.avatar}`) ))
     ; __append("\" alt=\"People card image\" class=\"people-card__img\">\n</div>\n<div class=\"people-card__text-wrapper\">\n<p class=\"people-card__body\">\n")
     ; __append(escapeFn( currentUser.name ))
-    ; __append("\n</p>\n</div>\n</div>\n</div>\n")
-    ;  } 
+    ; __append("\n</p>\n</div>\n</div>\n")
+    ;  } else if (currentColumnItem.data && currentColumnItem.data.type.match(/^slider/)) { 
+    ; __append("\n<div class=\"voting-area__slider voting-area__item\n")
+    ; __append(escapeFn( currentColumnItem.visibility !== 'both' ?
+`voting-area__item_visibility_${currentColumnItem.visibility}` : '' ))
     ; __append("\n")
-    ;  for (let j = 0; j < 2; j++) { 
+    ; __append(escapeFn( !currentColumnItem.data.active ? 'voting-area__slider_disabled' : '' ))
     ; __append("\n")
-    ;  if (j === 1) { 
-    ; __append("\n<div class=\"voting-area__sliders-wrapper\">\n")
-    ;  } 
-    ; __append("\n<div class=\"voting-area__slider\n")
-    ; __append(escapeFn( firstDisplayedUserId === data.users[0].id ? 'voting-area__slider_disabled' : '' ))
+    ; __append(escapeFn( currentColumnItem.data.type === 'slider-down' ? 'voting-area__slider_revert' : '' ))
     ; __append("\"\n")
-    ;  if ( firstDisplayedUserId !== data.users[0].id ) { 
-    ; __append("\n")
-    ; 
-const firstDisplayedUserIndex = data.users.findIndex(
-(item) => item.id === firstDisplayedUserId,
-);
-const tmp = firstDisplayedUserIndex - 7 > 0 ? firstDisplayedUserIndex - 7 : 0;
-const slideUpOffset = data.users[tmp].id;
-const paramsObj = {
-alias: 'vote',
-data: {
-offset: slideUpOffset,
-},
-};
-
-    ; __append("\ndata-action=\"update\" data-params=\"")
-    ; __append(escapeFn( JSON.stringify(paramsObj) ))
-    ; __append("\"\n")
-    ;  } 
-    ; __append("\n>\n<svg viewBox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<use xlink:href=\"#slider\"/>\n</svg>\n</div>\n<div class=\"voting-area__slider voting-area__slider_revert\n")
-    ; __append(escapeFn( i === data.users.length && (j === 0
-|| j === 1 && displayedCards <= 6) ? 'voting-area__slider_disabled' : '' ))
-    ; __append("\"\n")
-    ;  if (i !== data.users.length && (j === 0 || j === 1 && displayedCards >= 6)) { 
-    ; __append("\n")
-    ; 
-const paramsObj = {
-alias: 'vote',
-data: {
-offset: j === 0 ? verticalSlideOffset : horizontalSlideOffset,
-},
-};
-
-    ; __append("\ndata-action=\"update\" data-params=\"")
-    ; __append(escapeFn( JSON.stringify(paramsObj) ))
+    ;  if (currentColumnItem.data.active) { 
+    ; __append("\ndata-update=\"update\" data-params=\"")
+    ; __append(escapeFn( JSON.stringify(currentColumnItem.data.params) ))
     ; __append("\"\n")
     ;  } 
     ; __append("\n>\n<svg viewBox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<use xlink:href=\"#slider\"/>\n</svg>\n</div>\n")
-    ;  if (j === 1) { 
-    ; __append("\n</div>\n")
     ;  } 
     ; __append("\n")
+    ;  } 
+    ; __append("\n</div>\n")
     ;  } 
     ; __append("\n</div>\n<svg style=\"display: none;\">\n<symbol id=\"slider\">\n<path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62ZM32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64ZM59 32C59 46.9117 46.9117 59 32 59C17.0883 59 5 46.9117 5 32C5 17.0883 17.0883 5 32 5C46.9117 5 59 17.0883 59 32ZM25.0607 27.9393C24.4749 27.3536 23.5251 27.3536 22.9393 27.9393C22.3536 28.5251 22.3536 29.4749 22.9393 30.0607L30.9393 38.0607C31.5251 38.6464 32.4749 38.6464 33.0607 38.0607L41.0607 30.0607C41.6464 29.4749 41.6464 28.5251 41.0607 27.9393C40.4749 27.3536 39.5251 27.3536 38.9393 27.9393L32 34.8787L25.0607 27.9393Z\" fill=\"currentColor\"/>\n</symbol>\n</svg>\n</main>")
   }
@@ -831,7 +784,7 @@ webpackContext.id = 677;
 
 /***/ }),
 
-/***/ 285:
+/***/ 770:
 /***/ ((__unused_webpack_module, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -857,6 +810,150 @@ var diagram_default = /*#__PURE__*/__webpack_require__.n(diagram);
 // EXTERNAL MODULE: ./src/templates/activity.ejs
 var activity = __webpack_require__(266);
 var activity_default = /*#__PURE__*/__webpack_require__.n(activity);
+;// CONCATENATED MODULE: ./src/js/vote/prepareVoteData.js
+function prepareVoteData(data) {
+  const preparedData = {
+    data: {
+      title: data.title,
+      subtitle: data.subtitle,
+      columns: [],
+    },
+  };
+
+  const { users, selectedUserId, offset } = data;
+  let offsetNum = data.users.findIndex((user) => user.id === offset);
+  if (offsetNum === -1) {
+    offsetNum = 0;
+  }
+
+  users.forEach((user, index) => {
+    users[index].type = 'user';
+    users[index].selected = user.id === selectedUserId;
+  });
+
+  // Data for sliderUp
+  const sliderUpActive = offset && users[0] && offset !== users[0].id;
+
+  let sliderUpOffsetVert = null;
+  let sliderUpOffsetHoriz = null;
+  if (sliderUpActive) {
+    let userId = offsetNum - 6 >= 0 ? offsetNum - 6 : 0;
+    sliderUpOffsetVert = users[userId].id;
+
+    userId = offsetNum - 8 >= 0 ? offsetNum - 8 : 0;
+    sliderUpOffsetHoriz = users[userId].id;
+  }
+
+  // Data for sliderDown
+  // Compare last user index to display and last possible user index
+  const sliderDownActiveVert = offsetNum + 7 < users.length - 1;
+  let sliderDownOffsetVert = null;
+  if (sliderDownActiveVert) {
+    sliderDownOffsetVert = users[offsetNum + 8].id;
+  }
+
+  const sliderDownActiveHoriz = offsetNum + 5 < users.length - 1;
+  let sliderDownOffsetHoriz = null;
+  if (sliderDownActiveHoriz) {
+    sliderDownOffsetHoriz = users[offsetNum + 6].id;
+  }
+
+  preparedData.data.columns = [
+    [
+      {
+        data: users[offsetNum] || false,
+        visibility: 'both',
+      },
+      {
+        data: users[offsetNum + 3] || false,
+        visibility: 'vertical',
+      },
+      {
+        data: users[offsetNum + 6] || false,
+        visibility: 'vertical',
+      },
+    ],
+    [
+      // slider-up
+      {
+        data: {
+          type: 'slider-up',
+          active: Boolean(sliderUpActive),
+          params: {
+            offset: sliderUpOffsetVert,
+          },
+        },
+        visibility: 'vertical',
+      },
+      {
+        data: users[offsetNum + 1] || false,
+        visibility: 'both',
+      },
+      {
+        data: users[offsetNum + 4] || false,
+        visibility: 'both',
+      },
+      // slider-down
+      {
+        data: {
+          type: 'slider-down',
+          active: sliderDownActiveVert,
+          params: {
+            offset: sliderDownOffsetVert,
+          },
+        },
+        visibility: 'vertical',
+      },
+    ],
+    [
+      // slider-up
+      {
+        data: {
+          type: 'slider-up',
+          active: Boolean(sliderUpActive),
+          params: {
+            offset: sliderUpOffsetHoriz,
+          },
+        },
+        visibility: 'horizontal',
+      },
+      // slider-down
+      {
+        data: {
+          type: 'slider-down',
+          active: sliderDownActiveHoriz,
+          params: {
+            offset: sliderDownOffsetHoriz,
+          },
+        },
+        visibility: 'horizontal',
+      },
+    ],
+    [
+      {
+        data: users[offsetNum + 2] || false,
+        visibility: 'both',
+      },
+      {
+        data: users[offsetNum + 5] || false,
+        visibility: 'both',
+      },
+      {
+        data: users[offsetNum + 7] || false,
+        visibility: 'vertical',
+      },
+    ],
+    [
+      {
+        data: users[offsetNum + 3] || false,
+        visibility: 'horizontal',
+      },
+    ],
+  ];
+
+  return preparedData;
+}
+
 ;// CONCATENATED MODULE: ./src/js/activity/prepareActivityData.js
 function copyDepth2(arr) {
   const newArr = [];
@@ -977,6 +1074,7 @@ function prepareActivityData(data) {
 
 
 
+
 function renderTemplate(alias, data) {
   let renderedTemplate;
   let preparedData;
@@ -986,7 +1084,8 @@ function renderTemplate(alias, data) {
       renderedTemplate = leaders_default()({ data });
       break;
     case 'vote':
-      renderedTemplate = vote_default()({ data });
+      preparedData = prepareVoteData(data);
+      renderedTemplate = vote_default()(preparedData);
       break;
     case 'chart':
       renderedTemplate = chart_default()({ data });
@@ -1015,15 +1114,12 @@ window.renderTemplate = renderTemplate;
 
 
 function manageQuery() {
-  const possibleThemes = ['dark', 'light'];
-
   const queryString = window.location.search;
   const queryStringParser = (str) => str.replace('?', '').split('&').map((item) => item.split('='));
   const parsedQueryString = queryStringParser(queryString);
 
   const slide = parsedQueryString.find((item) => item[0] === 'slide');
   const theme = parsedQueryString.find((item) => item[0] === 'theme');
-  const otherSolving = parsedQueryString.find((item) => item[0] === 'other_solving');
 
   let neededDataIndex;
   if (slide && slide[1] < 12 && slide[1] > 0) {
@@ -1035,10 +1131,6 @@ function manageQuery() {
   document.body.innerHTML = renderTemplate(data_namespaceObject[neededDataIndex].alias,
     data_namespaceObject[neededDataIndex].data);
 
-  if (theme && possibleThemes.includes(theme[1])) {
-    document.body.classList.add(`theme_${theme[1]}`);
-  }
-
   const link = document.createElement('link');
   link.rel = 'icon';
   if (theme && theme[1] === 'light') {
@@ -1047,10 +1139,6 @@ function manageQuery() {
     link.href = favicon_dark;
   }
   document.head.append(link);
-
-  if (otherSolving && neededDataIndex === 8) {
-    document.body.classList.add('other_solving');
-  }
 
   window.postMessage('slideLoaded', window.location.href);
 }
@@ -1083,9 +1171,7 @@ function selectUser(event) {
   }
 }
 
-;// CONCATENATED MODULE: ./src/js/vote/vote.js
-
-
+;// CONCATENATED MODULE: ./src/js/vote/stretchyMargins.js
 let startPositionY;
 let initialVotingAreaHeight;
 let minVerticalHeight;
@@ -1182,6 +1268,10 @@ function voteSlideResize() {
   votingArea.removeAttribute('style');
 }
 
+;// CONCATENATED MODULE: ./src/js/vote/initVoteSlide.js
+
+
+
 function initVoteSlide() {
   const main = document.querySelector('main');
   if (!main || main.dataset.slide !== 'vote') return;
@@ -1199,13 +1289,27 @@ function initVoteSlide() {
 
   window.addEventListener('touchend', touchEnd);
   window.addEventListener('mouseup', touchEnd);
+}
 
-  window.onresize = () => {
-    voteSlideResize();
-  };
+;// CONCATENATED MODULE: ./src/js/chart/alignChartBlock.js
+function alignChartBlock() {
+  const main = document.querySelector('main');
+  if (!main || main.dataset.slide !== 'chart') return;
+
+  const chartBlock = document.querySelector('.chart-block');
+  const clientWidth = window.innerWidth;
+  const clientHeight = window.innerHeight;
+
+  if (chartBlock.scrollWidth > 0.95 * clientWidth && clientWidth / clientHeight > 1) {
+    chartBlock.setAttribute('style', 'justify-content: flex-end; padding-right: 2.5vw;');
+  } else {
+    chartBlock.removeAttribute('style');
+  }
 }
 
 ;// CONCATENATED MODULE: ./src/js/chart/chart.js
+
+
 let startPositionX;
 let initialMargin;
 
@@ -1236,14 +1340,18 @@ function chart_touchMove(event) {
     currentPositionX = event.touches[0].clientX;
   }
 
-  const differenceX = -(startPositionX - currentPositionX);
+  const differenceX = currentPositionX - startPositionX;
   const marginMultiplier = differenceX / clientWidth;
   let marginDelta = initialMargin * marginMultiplier;
-  if (aspectRatio >= 1) marginDelta = -Math.abs(marginDelta);
+  if (aspectRatio >= 1 && clientWidth / 2 < startPositionX) {
+    marginDelta = -marginDelta;
+  }
 
   const newMargin = initialMargin - marginDelta;
 
-  if (newMargin > 0) {
+  let minMargin = window.getComputedStyle(document.documentElement).getPropertyValue('font-size');
+  minMargin = 0.5 * parseFloat(minMargin);
+  if (newMargin > minMargin) {
     const chartBlockItems = document.querySelectorAll('.chart-block__item');
     Array.prototype.forEach.call(
       chartBlockItems,
@@ -1270,6 +1378,8 @@ function chart_touchEnd(event) {
       'transition: margin-right 0.15s ease-in-out',
     );
   });
+
+  chartBlockItems[0].ontransitionend = alignChartBlock;
 }
 
 function initChartSlide() {
@@ -1285,6 +1395,8 @@ function initChartSlide() {
 
   chartBlock.addEventListener('touchend', chart_touchEnd);
   chartBlock.addEventListener('mouseup', chart_touchEnd);
+
+  alignChartBlock();
 }
 
 ;// CONCATENATED MODULE: ./src/index.js
@@ -1295,7 +1407,11 @@ function initChartSlide() {
 
 
 
-manageQuery();
+
+
+window.onload = () => {
+  manageQuery();
+};
 
 // This is needed for executing js after slide loading
 window.addEventListener('message', (event) => {
@@ -1305,6 +1421,11 @@ window.addEventListener('message', (event) => {
   initVoteSlide();
   initChartSlide();
 });
+
+window.onresize = () => {
+  voteSlideResize();
+  alignChartBlock();
+};
 
 
 /***/ })
@@ -1374,7 +1495,7 @@ window.addEventListener('message', (event) => {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(285);
+/******/ 	var __webpack_exports__ = __webpack_require__(770);
 /******/ 	
 /******/ })()
 ;

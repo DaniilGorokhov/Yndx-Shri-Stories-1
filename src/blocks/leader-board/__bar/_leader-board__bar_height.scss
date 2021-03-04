@@ -1,9 +1,9 @@
 @for $i from 1 through 5 {
     .leader-board__bar.leader-board__bar_height_#{$i} {
-        height: 14vh + $i * 7vh;
+        height: 48.653vh - (5 - $i) * 7.485vh;
 
         @media (min-aspect-ratio: 1 / 1) {
-            height: 18vh + (ceil($number: $i / 2) - 1) * 5vh;
+            height: 18.085106vh + (ceil($number: $i / 2) - 1) * 5.3191489vh;
         }
 
         @media (min-aspect-ratio: 16 / 9) and (min-width: 1366px) {

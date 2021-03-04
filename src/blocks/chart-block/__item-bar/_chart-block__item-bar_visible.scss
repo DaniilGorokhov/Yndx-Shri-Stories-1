@@ -1,0 +1,13 @@
+.chart-block__item-bar.chart-block__item-bar_visible_vert {
+    @media (min-aspect-ratio: 1 / 1) {
+        display: none;
+    }
+}
+
+.chart-block__item-bar.chart-block__item-bar_visible_horiz {
+    display: none;
+
+    @media (min-aspect-ratio: 1 / 1) {
+        display: block;
+    }
+}
