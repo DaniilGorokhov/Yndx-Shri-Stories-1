@@ -16,7 +16,7 @@ npm install
 npm start
 ```
 
-Замечание: так как используется CleanWebpackPlugin папка build будет очищена, а сборка загружена в оперативную память из-за использования webpack-dev-middleware, поэтому для того, чтобы изучить содержимое папки build придётся запустить команду:
+Для сборки проекта нужно вызвать команду:
 
 ```bash
 npm run build
@@ -50,7 +50,7 @@ npm run build
 
         Сначала поясню зачем я составляю фигуру. Элемент тепловой карты представляет собой 6-угольник и 3 (может быть 2) прямоугольника для наложения градиентов и теней:
 
-        ![Картинка для пояснения](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/04f93bad-4b0e-49da-80d6-0181d1721f71/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAT73L2G45O3KS52Y5%2F20210303%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20210303T123647Z&X-Amz-Expires=86400&X-Amz-Signature=54c6b6d0f76084c8cd26e00bb6ecc599489130cf41ba10b5c95bae08d1704bcf&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22)
+        ![Картинка для пояснения](https://i8.wampi.ru/2021/03/05/DLY_POYSNENIY.png)
 
         Поэтому можно сначала нужно составить 6-угольник.
 
