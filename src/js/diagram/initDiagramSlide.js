@@ -6,5 +6,4 @@ export default function initDiagramSlide() {
   if (!sureSlide('diagram')) return;
 
   initDiagramBlock();
-  // TODO resize
 }
