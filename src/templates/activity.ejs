@@ -15,7 +15,10 @@
     >
         <div class="heat-map-block">
             <% for (let hourIx = 0; hourIx < data.heatMap[0].length; hourIx += 1) { %>
-                <div class="heat-map-block__line">
+                <div
+                    class="heat-map-block__line
+                    <%= hourIx !== 0 ? `heat-map-block__line_margin_top-${hourIx}` : '' %>"
+                >
                     <% if (hourIx % 2 === 1) { %>
                         <div class="heat-map-block__item heat-map-block__item_placeholder"></div>
                     <% } %>

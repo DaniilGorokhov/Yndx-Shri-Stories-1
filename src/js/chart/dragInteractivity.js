@@ -3,7 +3,7 @@ import alignChartBlock from './alignChartBlock';
 let startPositionX;
 let initialMargin;
 
-function touchStart(event) {
+export function touchStart(event) {
   if (event.type === 'mousedown') {
     const chartBlock = document.querySelector('.chart-block');
     chartBlock.style.cursor = 'grabbing';
@@ -16,7 +16,7 @@ function touchStart(event) {
   initialMargin = parseFloat(window.getComputedStyle(chartBlockItem).getPropertyValue('margin-right'));
 }
 
-function touchMove(event) {
+export function touchMove(event) {
   if (!startPositionX) return;
 
   const clientWidth = window.innerWidth;
@@ -54,7 +54,7 @@ function touchMove(event) {
   }
 }
 
-function touchEnd(event) {
+export function touchEnd(event) {
   if (event.type === 'mouseup') {
     const chartBlock = document.querySelector('.chart-block');
     chartBlock.style.cursor = 'grab';
@@ -70,21 +70,4 @@ function touchEnd(event) {
   });
 
   chartBlockItems[0].ontransitionend = alignChartBlock;
-}
-
-export default function initChartSlide() {
-  const main = document.querySelector('main');
-  if (!main || main.dataset.slide !== 'chart') return;
-
-  const chartBlock = document.querySelector('.chart-block');
-  chartBlock.addEventListener('touchstart', touchStart);
-  chartBlock.addEventListener('mousedown', touchStart);
-
-  chartBlock.addEventListener('touchmove', touchMove);
-  chartBlock.addEventListener('mousemove', touchMove);
-
-  chartBlock.addEventListener('touchend', touchEnd);
-  chartBlock.addEventListener('mouseup', touchEnd);
-
-  alignChartBlock();
 }

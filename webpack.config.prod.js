@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
 const StylelintWebpackPlugin = require('stylelint-webpack-plugin');
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 
@@ -71,6 +72,7 @@ module.exports = {
     minimize: true,
     minimizer: [
       new CssMinimizerWebpackPlugin(),
+      new UglifyJsWebpackPlugin(),
     ],
   },
   mode: process.env.NODE_ENV === 'production',

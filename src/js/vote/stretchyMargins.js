@@ -1,3 +1,5 @@
+import sureSlide from '../helpers/sureSlide';
+
 let startPositionY;
 let initialVotingAreaHeight;
 let minVerticalHeight;
@@ -86,8 +88,7 @@ export function touchEnd() {
 }
 
 export function voteSlideResize() {
-  const main = document.querySelector('main');
-  if (!main || main.dataset.slide !== 'vote') return;
+  if (!sureSlide('vote')) return;
 
   initialVotingAreaHeight = null;
   const votingArea = document.querySelector('.voting-area');

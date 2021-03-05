@@ -1,6 +1,7 @@
+import sureSlide from '../helpers/sureSlide';
+
 export default function alignChartBlock() {
-  const main = document.querySelector('main');
-  if (!main || main.dataset.slide !== 'chart') return;
+  if (!sureSlide('chart')) return;
 
   const chartBlock = document.querySelector('.chart-block');
   const clientWidth = window.innerWidth;

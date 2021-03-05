@@ -1,11 +1,11 @@
+import sureSlide from '../helpers/sureSlide';
 import selectUser from './selectUser';
 import {
   touchStart, touchMove, touchEnd,
 } from './stretchyMargins';
 
 export default function initVoteSlide() {
-  const main = document.querySelector('main');
-  if (!main || main.dataset.slide !== 'vote') return;
+  if (!sureSlide('vote')) return;
 
   const peopleCards = document.querySelectorAll('.people-card');
   for (let i = 0; i < peopleCards.length; i += 1) {

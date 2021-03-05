@@ -1,5 +1,9 @@
 @for $i from 1 through 24 {
     .heat-map-block__line.heat-map-block__line_margin_top-#{$i} {
-        margin-top: 0.25% * $i;
+        margin-top: 0.2% * $i;
+
+        @media (min-aspect-ratio: 1 / 1) {
+            margin-top: 0.3% * $i;
+        }
     }
 }

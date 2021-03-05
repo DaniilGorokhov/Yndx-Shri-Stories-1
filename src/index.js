@@ -4,8 +4,10 @@ import manageQuery from './js/queryManagement';
 import initVoteSlide from './js/vote/initVoteSlide';
 import { voteSlideResize } from './js/vote/stretchyMargins';
 
-import initChartSlide from './js/chart/chart';
+import initChartSlide from './js/chart/initChartSlide';
 import alignChartBlock from './js/chart/alignChartBlock';
+
+import initDiagramSlide from './js/diagram/initDiagramSlide';
 
 window.onload = () => {
   manageQuery();
@@ -18,6 +20,7 @@ window.addEventListener('message', (event) => {
 
   initVoteSlide();
   initChartSlide();
+  initDiagramSlide();
 });
 
 window.onresize = () => {
