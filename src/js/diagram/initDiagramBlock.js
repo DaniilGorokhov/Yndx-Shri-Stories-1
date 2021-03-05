@@ -12,7 +12,6 @@ export default function initDiagramBlock() {
   const charts = [];
 
   const { relativeDeg } = canvases[0].dataset;
-  // TODO total value clean
   const values = JSON.parse(canvases[0].dataset.values);
   const diagramData = values.map((value) => [value, +relativeDeg]).flat();
 

@@ -29,11 +29,8 @@ export default function prepareDiagramData(data) {
   preparedData.data.categories = preparedCategories;
   preparedData.data.dataset = values;
 
-  // Total value
-  const total = values.reduce((result, value) => result + value, 0);
-  preparedData.data.totalValue = total;
-
   // Relative degree - value of a divider between diagram pieces - 1 deg = 1 divider
+  const total = values.reduce((result, value) => result + value, 0);
   const relativeDeg = total / 360;
   preparedData.data.relativeDeg = relativeDeg;
 

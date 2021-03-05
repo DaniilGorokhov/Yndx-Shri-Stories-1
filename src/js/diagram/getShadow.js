@@ -49,7 +49,10 @@ export function getShadowBlur(theme, pieceId) {
   if (!pieceId) return 0;
 
   if (theme === 'dark') {
-    return SHADOWS_BLUR_DARK[pieceId];
+    const diagramWidth = document.querySelector('.diagram-block__body').clientWidth;
+
+    const tmp = SHADOWS_BLUR_DARK[pieceId];
+    return tmp * (diagramWidth / 240);
   }
   if (theme === 'light') {
     return 0;

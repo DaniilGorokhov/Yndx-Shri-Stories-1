@@ -42,10 +42,16 @@ export function getInsetShadowBlur(theme, pieceId) {
   if (!pieceId) return 0;
 
   if (theme === 'dark') {
-    return INSET_SHADOWS_BLUR_DARK[pieceId];
+    const diagramWidth = document.querySelector('.diagram-block__body').clientWidth;
+
+    const tmp = INSET_SHADOWS_BLUR_DARK[pieceId];
+    return tmp * (diagramWidth / 240);
   }
   if (theme === 'light') {
-    return INSET_SHADOWS_BLUR_LIGHT[pieceId];
+    const diagramWidth = document.querySelector('.diagram-block__body.diagram-block__body_light').clientWidth;
+
+    const tmp = INSET_SHADOWS_BLUR_LIGHT[pieceId];
+    return tmp * (diagramWidth / 240);
   }
 
   throw new Error('Unknown theme');
