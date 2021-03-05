@@ -79,7 +79,7 @@
                                 <%= currentUser.name %>
                             </p>
                             <p class="people-card__caption">
-                                <%= currentUser?.valueText %>
+                                <%= currentUser && currentUser.valueText ? currentUser.valueText : '' %>
                             </p>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                                         <%= selectedUser.name %>
                                     </p>
                                     <p class="people-card__caption people-card__caption_secondary">
-                                        <%= selectedUser?.valueText %>
+                                        <%= selectedUser && selectedUser.valueText ? selectedUser.valueText : '' %>
                                     </p>
                                 </div>
 

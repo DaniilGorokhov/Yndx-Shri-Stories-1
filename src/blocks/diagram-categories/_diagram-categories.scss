@@ -5,8 +5,9 @@
     flex-flow: column nowrap;
 
     @media (min-aspect-ratio: 1 / 1) {
-        width: 45vw;
+        width: calc(45.508982vw + 2.5rem);
         justify-content: center;
         padding: 0 0 0 2.5rem;
+        box-sizing: border-box;
     }
 }

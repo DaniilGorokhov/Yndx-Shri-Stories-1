@@ -2,3 +2,5 @@ build
 node_modules
 .husky
 .vscode
+backstop_data
+src/libs

@@ -9,118 +9,65 @@
     </div>
 
     <div class="voting-area">
-        <%
-            let needOffset = data.offset ? true : false;
-            let offset = 0, displayedCards = 0, i;
-            let firstDisplayedUserId;
-            let horizontalSlideOffset, verticalSlideOffset;
-        %>
-        <% for (i = 0; i < data.users.length; i++) { %>
-        <%
-            let currentUser = data.users[i];
-            if (displayedCards === 8) {
-                break;
-            } else if (needOffset && currentUser && data.offset !== currentUser.id) {
-                offset++;
-                continue;
-            } else {
-                needOffset = false;
-            }
-            displayedCards++;
-        %>
-            <div class="voting-area__card-item <%= `voting-area__card-item_position_${i + 1 - offset}` %>">
-                <div
-                    class="people-card people-card_interactions
-                    <%= currentUser.id === data.selectedUserId ? 'people-card_selected' : '' %>"
-                    <% if (displayedCards === 1) firstDisplayedUserId = currentUser.id; %>
-                    <% if (displayedCards === 6 && data.users[i + 1]) horizontalSlideOffset = data.users[i + 1].id; %>
-                    <% if (displayedCards === 8 && data.users[i + 1]) verticalSlideOffset = data.users[i + 1].id; %>
-                    data-action="update"
-                    data-params="<%= JSON.stringify({
-                        alias: 'leaders',
-                        data: {
-                            selectedUserId: currentUser.id,
-                        },
-                    }) %>"
-                >
-                    <div class="people-card__img-wrapper">
+        <% for (let columnId = 0; columnId < data.columns.length; columnId += 1) { %>
+            <div class="voting-area__column">
+                <% for (let columnItemId = 0; columnItemId < data.columns[columnId].length; columnItemId += 1) { %>
+                    <% let currentColumnItem = data.columns[columnId][columnItemId]; %>
+                    <% if (currentColumnItem.data && currentColumnItem.data.type === 'user') { %>
+                        <% let currentUser = currentColumnItem.data; %>
                         <div
-                            class="people-card__emoji
-                            <%= currentUser.id === data.selectedUserId ? '' : 'people-card__emoji_hidden' %>"
+                            class="people-card people-card_interactions voting-area__item
+                            <%= currentColumnItem.visibility !== 'both' ?
+                                `voting-area__item_visibility_${currentColumnItem.visibility}` : '' %>
+                            <%= currentUser.selected ? 'people-card_selected' : '' %>"
+                            data-action="update"
+                            data-params="<%= JSON.stringify({
+                                alias: 'leaders',
+                                data: {
+                                    selectedUserId: currentUser.id,
+                                },
+                            }) %>"
                         >
-                            👍
+                            <div class="people-card__img-wrapper">
+                                <div
+                                    class="people-card__emoji
+                                    <%= !currentUser.selected ? 'people-card__emoji_hidden' : '' %>"
+                                >
+                                    👍
+                                </div>
+
+                                <img
+                                    src="<%= require(`../assets/images/${currentUser.avatar}`) %>"
+                                    alt="People card image"
+                                    class="people-card__img"
+                                >
+                            </div>
+                            
+                            <div class="people-card__text-wrapper">
+                                <p class="people-card__body">
+                                    <%= currentUser.name %>
+                                </p>
+                            </div>
                         </div>
-
-                        <img
-                            src="<%= require(`../assets/images/${currentUser.avatar}`) %>"
-                            alt="People card image"
-                            class="people-card__img"
+                    <% } else if (currentColumnItem.data && currentColumnItem.data.type.match(/^slider/)) { %>
+                        <div
+                            class="voting-area__slider voting-area__item
+                            <%= currentColumnItem.visibility !== 'both' ?
+                                `voting-area__item_visibility_${currentColumnItem.visibility}` : '' %>
+                            <%= !currentColumnItem.data.active ? 'voting-area__slider_disabled' : '' %>
+                            <%= currentColumnItem.data.type === 'slider-down' ? 'voting-area__slider_revert' : '' %>"
+                            <% if (currentColumnItem.data.active) { %>
+                                data-update="update"
+                                data-params="<%= JSON.stringify(currentColumnItem.data.params) %>"
+                            <% } %>
                         >
-                    </div>
-                    
-                    <div class="people-card__text-wrapper">
-                        <p class="people-card__body">
-                            <%= currentUser.name %>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        <% } %>
-        
-        <% for (let j = 0; j < 2; j++) { %>
-            <% if (j === 1) { %>
-                <div class="voting-area__sliders-wrapper">
-            <% } %>
-            <div
-                class="voting-area__slider
-                <%= firstDisplayedUserId === data.users[0].id ? 'voting-area__slider_disabled' : '' %>"
-                <% if ( firstDisplayedUserId !== data.users[0].id ) { %>
-                    <%
-                        const firstDisplayedUserIndex = data.users.findIndex(
-                            (item) => item.id === firstDisplayedUserId,
-                        );
-                        const tmp = firstDisplayedUserIndex - 7 > 0 ? firstDisplayedUserIndex - 7 : 0;
-                        const slideUpOffset = data.users[tmp].id;
-                        const paramsObj = {
-                            alias: 'vote',
-                            data: {
-                                offset: slideUpOffset,
-                            },
-                        };
-                    %>
-                    data-action="update"
-                    data-params="<%= JSON.stringify(paramsObj) %>"
+                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use xlink:href="#slider" />
+                            </svg>
+                        </div>
+                    <% } %>
                 <% } %>
-            >
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="#slider" />
-                </svg>
             </div>
-
-            <div
-                class="voting-area__slider voting-area__slider_revert
-                <%= i === data.users.length && (j === 0
-                    || j === 1 && displayedCards <= 6) ? 'voting-area__slider_disabled' : '' %>"
-                <% if (i !== data.users.length && (j === 0 || j === 1 && displayedCards >= 6)) { %>
-                    <%
-                        const paramsObj = {
-                            alias: 'vote',
-                            data: {
-                                offset: j === 0 ? verticalSlideOffset : horizontalSlideOffset,
-                            },
-                        };
-                    %>
-                    data-action="update"
-                    data-params="<%= JSON.stringify(paramsObj) %>"
-                <% } %>
-            >
-                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use xlink:href="#slider" />
-                </svg>
-            </div>
-            <% if (j === 1) { %>
-                </div>
-            <% } %>
         <% } %>
     </div>
 

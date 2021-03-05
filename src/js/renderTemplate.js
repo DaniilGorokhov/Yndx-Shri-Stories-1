@@ -4,6 +4,8 @@ import chartTemp from '../templates/chart.ejs';
 import diagramTemp from '../templates/diagram.ejs';
 import activityTemp from '../templates/activity.ejs';
 
+import prepareVoteData from './vote/prepareVoteData';
+import prepareDiagramData from './diagram/prepareDiagramData';
 import prepareActivityData from './activity/prepareActivityData';
 
 export default function renderTemplate(alias, data) {
@@ -15,13 +17,15 @@ export default function renderTemplate(alias, data) {
       renderedTemplate = leadersTemp({ data });
       break;
     case 'vote':
-      renderedTemplate = voteTemp({ data });
+      preparedData = prepareVoteData(data);
+      renderedTemplate = voteTemp(preparedData);
       break;
     case 'chart':
       renderedTemplate = chartTemp({ data });
       break;
     case 'diagram':
-      renderedTemplate = diagramTemp({ data });
+      preparedData = prepareDiagramData(data);
+      renderedTemplate = diagramTemp(preparedData);
       break;
     case 'activity':
       preparedData = prepareActivityData(data);

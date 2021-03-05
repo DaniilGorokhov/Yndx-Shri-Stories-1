@@ -1,0 +1,17 @@
+.voting-area__column {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+}
+
+.voting-area__column:nth-child(3),
+.voting-area__column:nth-child(5) {
+    display: none;
+}
+
+@media (min-aspect-ratio: 1 / 1) {
+    .voting-area__column:nth-child(3),
+    .voting-area__column:nth-child(5) {
+        display: flex;
+    }
+}

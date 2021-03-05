@@ -52,9 +52,15 @@
                     </p>
 
                     <div
-                        class="chart-block__item-bar
+                        class="chart-block__item-bar chart-block__item-bar_visible_vert
                         <%= data.values[i].active ? 'chart-block__item-bar_active' : '' %>"
-                        <%- `style="height: ${70 * (data.values[i].value / maxValue)}%"` %>
+                        <%- `style="height: ${63.15625 * (data.values[i].value / maxValue)}%"` %>
+                    ></div>
+
+                    <div
+                        class="chart-block__item-bar chart-block__item-bar_visible_horiz
+                        <%= data.values[i].active ? 'chart-block__item-bar_active' : '' %>"
+                        <%- `style="height: ${62.84946236 * (data.values[i].value / maxValue)}%"` %>
                     ></div>
 
                     <p class="chart-block__item-title">

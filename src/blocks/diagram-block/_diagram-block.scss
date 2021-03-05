@@ -10,27 +10,10 @@
 
     @media (min-aspect-ratio: 1 / 1) {
         height: auto;
-        padding: 1.5rem 0;
-        width: 42vw;
+        width: 35.92814371vw;
+        padding: 0;
         max-width: 65vh;
         min-width: 30vw;
-    }
-}
-
-body.other_solving .diagram-block__body circle {
-    @for $i from 1 through 4 {
-        &:nth-child(#{$i}) {
-            filter: url('#filter#{$i - 1}_dii');
-            stroke: url('#radial-dark-#{$i - 1}');
-        }
-    }
-}
-
-body.other_solving.theme_light .diagram-block__body.diagram-block__body_light circle {
-    @for $i from 1 through 4 {
-        &:nth-child(#{$i}) {
-            filter: url('#filter#{$i - 1}_ii');
-            stroke: url('#radial-light-#{$i - 1}');
-        }
+        min-height: 63.8297872vh;
     }
 }

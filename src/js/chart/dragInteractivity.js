@@ -1,7 +1,9 @@
+import alignChartBlock from './alignChartBlock';
+
 let startPositionX;
 let initialMargin;
 
-function touchStart(event) {
+export function touchStart(event) {
   if (event.type === 'mousedown') {
     const chartBlock = document.querySelector('.chart-block');
     chartBlock.style.cursor = 'grabbing';
@@ -14,7 +16,7 @@ function touchStart(event) {
   initialMargin = parseFloat(window.getComputedStyle(chartBlockItem).getPropertyValue('margin-right'));
 }
 
-function touchMove(event) {
+export function touchMove(event) {
   if (!startPositionX) return;
 
   const clientWidth = window.innerWidth;
@@ -28,14 +30,18 @@ function touchMove(event) {
     currentPositionX = event.touches[0].clientX;
   }
 
-  const differenceX = -(startPositionX - currentPositionX);
+  const differenceX = currentPositionX - startPositionX;
   const marginMultiplier = differenceX / clientWidth;
   let marginDelta = initialMargin * marginMultiplier;
-  if (aspectRatio >= 1) marginDelta = -Math.abs(marginDelta);
+  if (aspectRatio >= 1 && clientWidth / 2 < startPositionX) {
+    marginDelta = -marginDelta;
+  }
 
   const newMargin = initialMargin - marginDelta;
 
-  if (newMargin > 0) {
+  let minMargin = window.getComputedStyle(document.documentElement).getPropertyValue('font-size');
+  minMargin = 0.5 * parseFloat(minMargin);
+  if (newMargin > minMargin) {
     const chartBlockItems = document.querySelectorAll('.chart-block__item');
     Array.prototype.forEach.call(
       chartBlockItems,
@@ -48,7 +54,7 @@ function touchMove(event) {
   }
 }
 
-function touchEnd(event) {
+export function touchEnd(event) {
   if (event.type === 'mouseup') {
     const chartBlock = document.querySelector('.chart-block');
     chartBlock.style.cursor = 'grab';
@@ -62,19 +68,6 @@ function touchEnd(event) {
       'transition: margin-right 0.15s ease-in-out',
     );
   });
-}
 
-export default function initChartSlide() {
-  const main = document.querySelector('main');
-  if (!main || main.dataset.slide !== 'chart') return;
-
-  const chartBlock = document.querySelector('.chart-block');
-  chartBlock.addEventListener('touchstart', touchStart);
-  chartBlock.addEventListener('mousedown', touchStart);
-
-  chartBlock.addEventListener('touchmove', touchMove);
-  chartBlock.addEventListener('mousemove', touchMove);
-
-  chartBlock.addEventListener('touchend', touchEnd);
-  chartBlock.addEventListener('mouseup', touchEnd);
+  chartBlockItems[0].ontransitionend = alignChartBlock;
 }
