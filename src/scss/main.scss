@@ -9,8 +9,19 @@
 
 :root {
     box-sizing: border-box;
-    // adaptation below
     font-size: 2em;
+
+    @media (max-width: 1919px) {
+        font-size: 1.5em;
+    }
+
+    @media (max-width: 767px) {
+        font-size: 1em;
+    }
+
+    @media (max-width: 320px), (max-height: 320px) {
+        font-size: 0.85em;
+    }
 }
 
 body {
@@ -23,22 +34,4 @@ body {
 
 body.theme_light {
     background: #fff;
-}
-
-@media (max-width: 1919px) {
-    :root {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 767px) {
-    :root {
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 320px), (max-height: 320px) {
-    :root {
-        font-size: 0.85em;
-    }
 }

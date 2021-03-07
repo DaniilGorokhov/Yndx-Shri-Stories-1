@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 50vh;
-    width: calc(100% - 3rem);
+    width: calc(100vw - 3rem);
     padding: 0 1.5rem;
     overflow: hidden;
     position: relative;
@@ -13,7 +13,6 @@
         width: 35.92814371vw;
         padding: 0;
         max-width: 65vh;
-        min-width: 30vw;
         min-height: 63.8297872vh;
     }
 }

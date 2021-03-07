@@ -7,7 +7,9 @@ export default function prepareVoteData(data) {
     },
   };
 
-  const { users, selectedUserId, offset } = data;
+  const { selectedUserId, offset } = data;
+  const users = data.users.slice();
+
   let offsetNum = data.users.findIndex((user) => user.id === offset);
   if (offsetNum === -1) {
     offsetNum = 0;

@@ -6,6 +6,10 @@
             height: 18.085106vh + (ceil($number: $i / 2) - 1) * 5.3191489vh;
         }
 
+        @media (min-aspect-ratio: 1 / 1) and (max-aspect-ratio: 4 / 3) {
+            height: 23.085106vh + (ceil($number: $i / 2) - 1) * 7.8191489vh;
+        }
+
         @media (min-aspect-ratio: 16 / 9) and (min-width: 1366px) {
             height: 21vh + (ceil($number: $i / 2) - 1) * 7vh;
         }

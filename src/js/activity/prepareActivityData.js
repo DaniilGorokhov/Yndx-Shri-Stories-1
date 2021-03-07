@@ -1,9 +1,4 @@
-function copyDepth2(arr) {
-  const newArr = [];
-  arr.forEach((item) => newArr.push(item.slice()));
-
-  return newArr;
-}
+import copyDepth2 from '../helpers/copyDepth2';
 
 function getIntervals(max) {
   const intInterval = Math.floor(max / 3);

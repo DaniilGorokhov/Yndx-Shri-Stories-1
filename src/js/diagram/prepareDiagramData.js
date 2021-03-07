@@ -1,3 +1,5 @@
+import getClipPath from './getClipPath';
+
 export default function prepareDiagramData(data) {
   const preparedData = {
     data: {
@@ -27,12 +29,30 @@ export default function prepareDiagramData(data) {
   }
 
   preparedData.data.categories = preparedCategories;
-  preparedData.data.dataset = values;
 
-  // Relative degree - value of a divider between diagram pieces - 1 deg = 1 divider
+  // Compute dataset
+  const dataset = [];
+
+  // Note: degreeNum - total relative number, which equivalent 1 deg
   const total = values.reduce((result, value) => result + value, 0);
-  const relativeDeg = total / 360;
-  preparedData.data.relativeDeg = relativeDeg;
+  const degreeNum = total / 356;
+
+  let startDegree = 0;
+  for (let valueIx = 0; valueIx < values.length; valueIx += 1) {
+    // We can't divide value by total, because we don't take into account dividers
+    const valueInDegree = values[valueIx] / degreeNum;
+    // In percent is a number between 0 and 100
+    const valueInPercent = (values[valueIx] / total) * 100;
+
+    dataset.push({
+      clipPathParams: getClipPath(valueInPercent, valueInDegree),
+      rotateDeg: startDegree,
+    });
+
+    startDegree += valueInDegree + 1;
+  }
+
+  preparedData.data.dataset = dataset;
 
   return preparedData;
 }

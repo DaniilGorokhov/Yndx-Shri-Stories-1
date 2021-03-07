@@ -23,21 +23,16 @@
             </div>
 
             <div class="diagram-block__body">
-                <canvas
-                    data-total-value="<%= data.totalValue %>"
-                    data-relative-deg="<%= data.relativeDeg %>"
-                    data-values="<%= JSON.stringify(data.dataset) %>"
-                    data-theme="dark"
-                ></canvas>
-            </div>
-
-            <div class="diagram-block__body diagram-block__body_light">
-                <canvas
-                    data-total-value="<%= data.totalValue %>"
-                    data-relative-deg="<%= data.relativeDeg %>"
-                    data-values="<%= JSON.stringify(data.dataset) %>"
-                    data-theme="light"
-                ></canvas>
+                <% for (let diagramItemIx = 0; diagramItemIx < data.dataset.length; diagramItemIx += 1) { %>
+                    <div
+                        class="diagram-block__item
+                        diagram-block__item_color_<%= diagramItemIx + 1 %>"
+                        style="
+                            clip-path: polygon(<%= data.dataset[diagramItemIx].clipPathParams %>);
+                            transform: rotate(<%= data.dataset[diagramItemIx].rotateDeg %>deg);
+                        "
+                    ></div>
+                <% } %>
             </div>
         </div>
 
@@ -50,7 +45,15 @@
                     </div>
 
                     <div class="diagram-categories-item__description">
-                        <p class="diagram-categories-item__description-item">
+                        <p class="diagram-categories-item__description-item
+                            diagram-categories-item__description-item_padding_right-1"
+                            <% if (data.categories[i].difference.length === 2) { %>
+                                <% // Need for testing - text is wider on screenshot %>
+                                style="letter-spacing: 0.5px;"
+                            <% } else if (data.categories[i].difference.length) { %>
+                                style="letter-spacing: 0.33px;"
+                            <% } %>
+                        >
                             <%= data.categories[i].difference %>
                         </p>
 
