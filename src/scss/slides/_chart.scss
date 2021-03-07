@@ -15,7 +15,6 @@
 @import "../../blocks/chart-block/chart-block";
 
 @import "../../blocks/chart-block/__item/chart-block__item";
-@import "../../blocks/chart-block/__item/chart-block__item_hidden";
 
 @import "../../blocks/chart-block/__item-bar/chart-block__item-bar";
 @import "../../blocks/chart-block/__item-bar/chart-block__item-bar_active";
@@ -32,6 +31,7 @@
 
 @import "../../blocks/people-card/people-card";
 @import "../../blocks/people-card/people-card_direction_row";
+@import "../../blocks/people-card/people-card_visibility";
 
 @import "../../blocks/people-card/__img-wrapper/people-card__img-wrapper";
 
@@ -45,6 +45,7 @@
 
 
 @import "../../blocks/divider/divider";
+@import "../../blocks/divider/divider_visibility";
 @import "../../blocks/divider/divider_revert-color";
 @import "../../blocks/divider/divider_margin-vertical";
 @import "../../blocks/divider/divider_horizontal-revert";

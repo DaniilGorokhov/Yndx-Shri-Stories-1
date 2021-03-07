@@ -3,6 +3,10 @@
     width: unset;
     justify-content: flex-start;
     min-width: calc(35.4790419vw - 17px);
+
+    @media (min-width: 1366px) {
+        min-width: 24vw;
+    }
 }
 
 .people-card.people-card_direction_row .people-card__img-wrapper {

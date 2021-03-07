@@ -9,4 +9,8 @@
     @media (min-aspect-ratio: 1 / 1) {
         display: grid;
     }
+
+    @media (min-aspect-ratio: 2 / 1) {
+        height: 32vh;
+    }
 }

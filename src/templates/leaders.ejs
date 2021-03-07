@@ -9,59 +9,25 @@
     </div>
 
     <div class="leader-board">
-        <%
-            let barOrder = [[3, 5], [4, 4], [2, 3], [5, 2], [1, 1]];
-
-            let inFirstThree = true;
-            let inFirstFive = true;
-            let selectedUserPos = data.users.findIndex(user => user.id === data.selectedUserId);
-            if (selectedUserPos > 2) {
-                inFirstThree = false;
-            }
-            if (selectedUserPos > 4) {
-                inFirstFive = false;
-            }
-
-            const selectedUser = data.users[selectedUserPos];
-        %>
-        <% for (let i = 0; i < 5; i++) { %>
-            <%
-                let itemClasses = [];
-                itemClasses.push(`leader-board__item_order_${barOrder[i][0]}`);
-                if (i > 2) itemClasses.push('leader-board__item_additional');
-                if (i === 0) {
-                    itemClasses.push(`leader-board__item_z-index_2`);
-                } else if (i < 3) {
-                    itemClasses.push(`leader-board__item_z-index_1`);
-                }
-
-                let barClasses = [];
-                barClasses.push(`leader-board__bar_height_${barOrder[i][1]}`);
-                if (i === 0) barClasses.push('leader-board__bar_primary');
-
-                let peopleCardWrapper;
-                if (i === 0) {
-                    peopleCardWrapper = 'leader-board__wrapper_to-vis-align_center';
-                } else if (i % 2 === 0) {
-                    peopleCardWrapper = 'leader-board__wrapper_to-vis-align_start';
-                } else {
-                    peopleCardWrapper = 'leader-board__wrapper_to-vis-align_end';
-                }
-
-                let currentUser = data.users[i];
-                if (!inFirstFive && i === 4) {
-                    currentUser = selectedUser;
-                }
-            %>
-            <div class="leader-board__item <%= itemClasses.join(' ') %>">
-                <div class="leader-board__wrapper <%= peopleCardWrapper %>">
+        <% for (let userIx = 0; userIx < data.users.length; userIx += 1) { %>
+            <% const currentUser = data.users[userIx]; %>
+            <div
+                class="leader-board__item
+                <%= `leader-board__item_order_${currentUser.barOrder}` %>
+                <%= `leader-board__item_z-index_${currentUser.zIndex}` %>
+                <%= currentUser.additional ? 'leader-board__item_additional': '' %>"
+            >
+                <div
+                    class="leader-board__wrapper
+                    <%= `leader-board__wrapper_to-vis-align_${currentUser.alignment}` %>"
+                >
                     <div class="people-card">
                         <div class="people-card__img-wrapper">
-                            <% if (i === 0) { %>
+                            <% if (userIx === 0) { %>
                                 <div class="people-card__emoji">
                                     <%= data.emoji %>
                                 </div>
-                            <% } else if (currentUser.id === data.selectedUserId) { %>
+                            <% } else if (currentUser.selected) { %>
                                 <div class="people-card__emoji">
                                     👍
                                 </div>
@@ -85,12 +51,19 @@
                     </div>
                 </div>
 
-                <div class="leader-board__bar <%= barClasses.join(' ') %>">
-                    <div class="leader-board__score leader-board__wrapper <%= peopleCardWrapper %>">
-                        <%= !inFirstFive && i === 4 ? selectedUserPos + 1 : i + 1 %>
+                <div
+                    class="leader-board__bar
+                    <%= `leader-board__bar_height_${currentUser.barHeight}` %>
+                    <%= currentUser.primary ? 'leader-board__bar_primary' : '' %>"
+                >
+                    <div
+                        class="leader-board__score leader-board__wrapper
+                        <%= `leader-board__wrapper_to-vis-align_${currentUser.alignment}` %>"
+                    >
+                        <%= currentUser.place %>
                     </div>
 
-                    <% if (!inFirstThree && i === 0) { %>
+                    <% if (data.relativePlace && userIx === 0) { %>
                         <div class="leader-board__relative-place">
                             <div class="people-card people-card_padding_bottom-0">
                                 <div class="people-card__img-wrapper">
@@ -99,7 +72,7 @@
                                     </div>
 
                                     <img
-                                        src="<%= require(`../assets/images/${selectedUser.avatar}`) %>"
+                                        src="<%= require(`../assets/images/${data.relativePlaceUser.avatar}`) %>"
                                         alt="People card image"
                                         class="people-card__img"
                                     >
@@ -107,10 +80,11 @@
                                 
                                 <div class="people-card__text-wrapper">
                                     <p class="people-card__body">
-                                        <%= selectedUser.name %>
+                                        <%= data.relativePlaceUser.name %>
                                     </p>
                                     <p class="people-card__caption people-card__caption_secondary">
-                                        <%= selectedUser && selectedUser.valueText ? selectedUser.valueText : '' %>
+                                        <%= data.relativePlaceUser && data.relativePlaceUser.valueText
+                                            ? data.relativePlaceUser.valueText : '' %>
                                     </p>
                                 </div>
 
@@ -118,10 +92,11 @@
                             </div>
 
                             <div
-                                class="leader-board__score leader-board__score_relative-place
-                                leader-board__wrapper <%= peopleCardWrapper %>"
+                                class="leader-board__score leader-board__wrapper
+                                leader-board__score_relative-place
+                                <%= data.relativePlaceUser.alignment %>"
                             >
-                                <%= selectedUserPos + 1 %>
+                                <%= data.relativePlaceUser.place %>
                             </div>
                         </div>
                     <% } %>

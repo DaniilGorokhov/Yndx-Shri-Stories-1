@@ -4,7 +4,10 @@ import chartTemp from '../templates/chart.ejs';
 import diagramTemp from '../templates/diagram.ejs';
 import activityTemp from '../templates/activity.ejs';
 
+// Prepare functions don't change input data
+import prepareLeadersData from './leaders/prepareLeadersData';
 import prepareVoteData from './vote/prepareVoteData';
+import prepareChartData from './chart/prepareChartData';
 import prepareDiagramData from './diagram/prepareDiagramData';
 import prepareActivityData from './activity/prepareActivityData';
 
@@ -14,14 +17,16 @@ export default function renderTemplate(alias, data) {
 
   switch (alias) {
     case 'leaders':
-      renderedTemplate = leadersTemp({ data });
+      preparedData = prepareLeadersData(data);
+      renderedTemplate = leadersTemp(preparedData);
       break;
     case 'vote':
       preparedData = prepareVoteData(data);
       renderedTemplate = voteTemp(preparedData);
       break;
     case 'chart':
-      renderedTemplate = chartTemp({ data });
+      preparedData = prepareChartData(data);
+      renderedTemplate = chartTemp(preparedData);
       break;
     case 'diagram':
       preparedData = prepareDiagramData(data);
