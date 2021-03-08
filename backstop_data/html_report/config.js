@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\__sl-9_diagram_dark_0_document_0_376x668.png",
-        "test": "..\\bitmaps_test\\20210308-231006\\__sl-9_diagram_dark_0_document_0_376x668.png",
+        "test": "..\\bitmaps_test\\20210309-012857\\__sl-9_diagram_dark_0_document_0_376x668.png",
         "selector": "document",
         "fileName": "__sl-9_diagram_dark_0_document_0_376x668.png",
         "label": "sl-9_diagram_dark",
@@ -18,17 +18,17 @@ report({
             "width": 0,
             "height": 0
           },
-          "misMatchPercentage": "3.77",
+          "misMatchPercentage": "3.74",
           "analysisTime": 39
         },
-        "diffImage": "..\\bitmaps_test\\20210308-231006\\failed_diff___sl-9_diagram_dark_0_document_0_376x668.png"
+        "diffImage": "..\\bitmaps_test\\20210309-012857\\failed_diff___sl-9_diagram_dark_0_document_0_376x668.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\__sl-9_diagram_dark_0_document_1_668x376.png",
-        "test": "..\\bitmaps_test\\20210308-231006\\__sl-9_diagram_dark_0_document_1_668x376.png",
+        "test": "..\\bitmaps_test\\20210309-012857\\__sl-9_diagram_dark_0_document_1_668x376.png",
         "selector": "document",
         "fileName": "__sl-9_diagram_dark_0_document_1_668x376.png",
         "label": "sl-9_diagram_dark",
@@ -43,16 +43,16 @@ report({
             "height": 0
           },
           "misMatchPercentage": "3.48",
-          "analysisTime": 36
+          "analysisTime": 38
         },
-        "diffImage": "..\\bitmaps_test\\20210308-231006\\failed_diff___sl-9_diagram_dark_0_document_1_668x376.png"
+        "diffImage": "..\\bitmaps_test\\20210309-012857\\failed_diff___sl-9_diagram_dark_0_document_1_668x376.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\__sl-9_diagram_light_0_document_0_376x668.png",
-        "test": "..\\bitmaps_test\\20210308-231006\\__sl-9_diagram_light_0_document_0_376x668.png",
+        "test": "..\\bitmaps_test\\20210309-012857\\__sl-9_diagram_light_0_document_0_376x668.png",
         "selector": "document",
         "fileName": "__sl-9_diagram_light_0_document_0_376x668.png",
         "label": "sl-9_diagram_light",
@@ -67,16 +67,16 @@ report({
             "height": 0
           },
           "misMatchPercentage": "2.89",
-          "analysisTime": 35
+          "analysisTime": 32
         },
-        "diffImage": "..\\bitmaps_test\\20210308-231006\\failed_diff___sl-9_diagram_light_0_document_0_376x668.png"
+        "diffImage": "..\\bitmaps_test\\20210309-012857\\failed_diff___sl-9_diagram_light_0_document_0_376x668.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\__sl-9_diagram_light_0_document_1_668x376.png",
-        "test": "..\\bitmaps_test\\20210308-231006\\__sl-9_diagram_light_0_document_1_668x376.png",
+        "test": "..\\bitmaps_test\\20210309-012857\\__sl-9_diagram_light_0_document_1_668x376.png",
         "selector": "document",
         "fileName": "__sl-9_diagram_light_0_document_1_668x376.png",
         "label": "sl-9_diagram_light",
@@ -91,9 +91,9 @@ report({
             "height": 0
           },
           "misMatchPercentage": "2.37",
-          "analysisTime": 26
+          "analysisTime": 27
         },
-        "diffImage": "..\\bitmaps_test\\20210308-231006\\failed_diff___sl-9_diagram_light_0_document_1_668x376.png"
+        "diffImage": "..\\bitmaps_test\\20210309-012857\\failed_diff___sl-9_diagram_light_0_document_1_668x376.png"
       },
       "status": "fail"
     }
