@@ -51,7 +51,7 @@ export default function getClipPath(percent, degree) {
   // Add middleware points
   let currentIx = 0;
   let currentPoint = rectMap[currentIx];
-  while (percent > currentPoint.minPercent) {
+  while (percent > currentPoint.minPercent && currentIx < 8) {
     pathCoords.push(currentPoint.coords);
     currentIx += 1;
     currentPoint = rectMap[currentIx];

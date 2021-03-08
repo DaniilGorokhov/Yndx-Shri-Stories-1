@@ -1,11 +1,16 @@
 .diagram-block__body {
-    width: min(calc(100vw - 3rem), 50vh);
-    height: min(calc(100vw - 3rem), 50vh);
+    width: min(calc(100vw - 3rem), 49.1017964vh);
+    height: min(calc(100vw - 3rem), 49.1017964vh);
     transform: rotate(-119deg);
     position: relative;
+    mask-image: url('../assets/svg/mask.svg');
 
     @media (min-aspect-ratio: 1 / 1) {
         width: min(35.92814371vw, 65vh);
         height: min(35.92814371vw, 65vh);
     }
+}
+
+body.theme_light .diagram-block__body {
+    mask-image: none;
 }
