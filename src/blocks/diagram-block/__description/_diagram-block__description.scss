@@ -9,6 +9,10 @@
     justify-content: center;
 
     @media (min-aspect-ratio: 1 / 1) {
-        max-width: min(32.5vh, 21vw);
+        max-width: 120px;
+
+        @media (min-width: 768px) {
+            max-width: min(31.5vh, 19vw);
+        }
     }
 }

@@ -27,10 +27,10 @@
                     <div
                         class="diagram-block__item
                         diagram-block__item_color_<%= diagramItemIx + 1 %>"
-                        style="
-                            clip-path: polygon(<%= data.dataset[diagramItemIx].clipPathParams %>);
-                            transform: rotate(<%= data.dataset[diagramItemIx].rotateDeg %>deg);
-                        "
+                        style=<%= 
+                            `clip-path: polygon(${data.dataset[diagramItemIx].clipPathParams});
+                            transform: rotate(${data.dataset[diagramItemIx].rotateDeg}deg);`
+                        %>
                     ></div>
                 <% } %>
             </div>
