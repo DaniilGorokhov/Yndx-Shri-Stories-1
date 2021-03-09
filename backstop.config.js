@@ -1,7 +1,6 @@
 const baseUrl = 'http://localhost:8080';
 
-const slideIds = [9];
-// const slideIds = [1, 3, 4, 7, 9, 10];
+const slideIds = [1, 3, 4, 7, 9, 10];
 const slideAliases = {
   1: 'leaders',
   3: 'vote',
