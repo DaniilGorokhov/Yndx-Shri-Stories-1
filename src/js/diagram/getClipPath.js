@@ -6,41 +6,49 @@ export default function getClipPath(percent, degree) {
       minPercent: 0,
       coords: [100, 50],
       change: 'y',
+      changeSign: 1,
     },
     {
       minPercent: 12.5,
       coords: [100, 100],
       change: 'x',
+      changeSign: -1,
     },
     {
       minPercent: 25,
       coords: [50, 100],
       change: 'x',
+      changeSign: -1,
     },
     {
       minPercent: 37.5,
       coords: [0, 100],
       change: 'y',
+      changeSign: -1,
     },
     {
       minPercent: 50,
       coords: [0, 50],
       change: 'y',
+      changeSign: -1,
     },
     {
       minPercent: 62.5,
       coords: [0, 0],
       change: 'x',
+      changeSign: 1,
     },
     {
       minPercent: 75,
       coords: [50, 0],
       change: 'x',
+      changeSign: 1,
     },
     {
       minPercent: 87.5,
       coords: [100, 0],
       change: 'y',
+      changeSign: 1,
     },
   ];
 
@@ -69,19 +77,37 @@ export default function getClipPath(percent, degree) {
 
     let currentCoord;
     let neededCoord;
-    if (lastPoint.change === 'x') {
+    const mutableCoord = lastPoint.change;
+    const { changeSign } = lastPoint;
+
+    if (mutableCoord === 'x') {
       [currentCoord] = lastPoint.coords;
       neededCoord = x;
-    } else if (lastPoint.change === 'y') {
+    } else if (mutableCoord === 'y') {
       [, currentCoord] = lastPoint.coords;
       neededCoord = y;
     }
 
     const step = 0.02 * (currentCoord > neededCoord ? -1 : 1);
-    while (Math.abs(currentCoord - neededCoord) > 0.01) {
-      const newOtherCord = Math.sqrt(2500 - (currentCoord - 50) * (currentCoord - 50)) + 50;
-      const newCoords = [currentCoord, newOtherCord];
-      pathCoords.push(newCoords);
+    while (Math.abs(currentCoord - neededCoord) > 0.02) {
+      let newOtherCoord;
+      if (mutableCoord === 'x') {
+        if (changeSign === 1) {
+          newOtherCoord = 50 - Math.sqrt(2500 - (currentCoord - 50) * (currentCoord - 50));
+        } else if (changeSign === -1) {
+          newOtherCoord = Math.sqrt(2500 - (currentCoord - 50) * (currentCoord - 50)) + 50;
+        }
+
+        pathCoords.push([currentCoord, newOtherCoord]);
+      } else if (mutableCoord === 'y') {
+        if (changeSign === 1) {
+          newOtherCoord = Math.sqrt(2500 - (50 - currentCoord) * (50 - currentCoord)) + 50;
+        } else if (changeSign === -1) {
+          newOtherCoord = 50 - Math.sqrt(2500 - (50 - currentCoord) * (50 - currentCoord));
+        }
+
+        pathCoords.push([newOtherCoord, currentCoord]);
+      }
 
       currentCoord += step;
     }
