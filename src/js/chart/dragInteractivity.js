@@ -5,8 +5,6 @@ let initialMargin;
 
 export function touchStart(event) {
   if (event.type === 'mousedown') {
-    const chartBlock = document.querySelector('.chart-block');
-    chartBlock.style.cursor = 'grabbing';
     startPositionX = event.clientX;
   } else if (event.type === 'touchstart') {
     startPositionX = event.touches[0].clientX;
@@ -54,12 +52,7 @@ export function touchMove(event) {
   }
 }
 
-export function touchEnd(event) {
-  if (event.type === 'mouseup') {
-    const chartBlock = document.querySelector('.chart-block');
-    chartBlock.style.cursor = 'grab';
-  }
-
+export function touchEnd() {
   startPositionX = null;
   const chartBlockItems = document.querySelectorAll('.chart-block__item');
   Array.prototype.forEach.call(chartBlockItems, (item) => {

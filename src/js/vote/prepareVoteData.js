@@ -69,7 +69,10 @@ export default function prepareVoteData(data) {
           type: 'slider-up',
           active: Boolean(sliderUpActive),
           params: {
-            offset: sliderUpOffsetVert,
+            alias: 'vote',
+            data: {
+              offset: sliderUpOffsetVert,
+            },
           },
         },
         visibility: 'vertical',
@@ -88,7 +91,10 @@ export default function prepareVoteData(data) {
           type: 'slider-down',
           active: sliderDownActiveVert,
           params: {
-            offset: sliderDownOffsetVert,
+            alias: 'vote',
+            data: {
+              offset: sliderDownOffsetVert,
+            },
           },
         },
         visibility: 'vertical',
@@ -101,7 +107,10 @@ export default function prepareVoteData(data) {
           type: 'slider-up',
           active: Boolean(sliderUpActive),
           params: {
-            offset: sliderUpOffsetHoriz,
+            alias: 'vote',
+            data: {
+              offset: sliderUpOffsetHoriz,
+            },
           },
         },
         visibility: 'horizontal',
@@ -112,7 +121,10 @@ export default function prepareVoteData(data) {
           type: 'slider-down',
           active: sliderDownActiveHoriz,
           params: {
-            offset: sliderDownOffsetHoriz,
+            alias: 'vote',
+            data: {
+              offset: sliderDownOffsetHoriz,
+            },
           },
         },
         visibility: 'horizontal',

@@ -57,7 +57,7 @@
                             <%= !currentColumnItem.data.active ? 'voting-area__slider_disabled' : '' %>
                             <%= currentColumnItem.data.type === 'slider-down' ? 'voting-area__slider_revert' : '' %>"
                             <% if (currentColumnItem.data.active) { %>
-                                data-update="update"
+                                data-action="update"
                                 data-params="<%= JSON.stringify(currentColumnItem.data.params) %>"
                             <% } %>
                         >
