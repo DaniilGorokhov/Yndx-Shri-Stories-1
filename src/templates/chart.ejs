@@ -47,7 +47,7 @@
                     <div class="people-card__img-wrapper">
                         <img
                             class="people-card__img"
-                            src="<%= require(`../assets/images/${data.users[i].avatar}`) %>"
+                            src="<%= require(`../assets/images/${data.users[i].avatar}`).slice(1) %>"
                             alt="People card image"
                         >
                     </div>
