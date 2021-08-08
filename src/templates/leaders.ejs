@@ -34,7 +34,7 @@
                             <% } %>
 
                             <img
-                                src="<%= require(`../assets/images/${currentUser.avatar}`).slice(1) %>"
+                                src="<%= require(`../assets/images/${currentUser.avatar}`) %>"
                                 alt="People card image"
                                 class="people-card__img"
                             >
@@ -72,7 +72,7 @@
                                     </div>
 
                                     <img
-                                        src="<%= require(`../assets/images/${data.relativePlaceUser.avatar}`).slice(1) %>"
+                                        src="<%= require(`../assets/images/${data.relativePlaceUser.avatar}`) %>"
                                         alt="People card image"
                                         class="people-card__img"
                                     >
